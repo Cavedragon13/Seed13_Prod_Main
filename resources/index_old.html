@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seed 13 Productions</title>
+  <meta name="description" content="Professional AI-generated imagery and custom transformations">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Prevent image downloading -->
+  <meta name="robots" content="noindex, nofollow">
+  
+  <style>
+    /* CSS Variables for consistent theming */
+    :root {
+      --color-black: #000000;
+      --color-orange: #E65100;
+      --color-red: #D32F2F;
+      --color-magenta: #AB47BC;
+      --color-lavender: #EDE7F6;
+      --color-dark-gray: #212121;
+      --color-light-gray: #f5f5f5;
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.3s ease;
+      --border-radius: 8px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Reset and base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--color-lavender);
+      color: var(--color-black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Prevent image selection and right-click */
+    img {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+
+    /* Re-enable pointer events for clickable images */
+    .thumbnail {
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    /* Header */
+    header {
+      background: var(--color-black);
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
+    /* Hide text title when logo is present */
+    .logo + h1 {
+      display: none;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--color-dark-gray);
+      padding: 1rem 0;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      transition: var(--transition-medium);
+    }
+
+    nav a:hover {
+      background: var(--color-magenta);
+      transform: translateY(-2px);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .thumbnail-container {
+      position: relative;
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition-medium);
+      display: flex;
+      flex-direction: column;
+      min-height: 200px;
+    }
+
+    .thumbnail-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      object-fit: contain;
+      transition: var(--transition-medium);
+    }
+
+    .thumbnail-container:hover .thumbnail {
+      transform: scale(1.05);
+    }
+
+    .image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 1rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+      text-align: center;
+      transform: translateY(100%);
+      transition: var(--transition-medium);
+    }
+
+    .thumbnail-container:hover .image-overlay {
+      transform: translateY(0);
+    }
+
+    .image-caption {
+      background: white;
+      padding: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+      color: var(--color-black);
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox img {
+      max-width: 80vw;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: var(--border-radius);
+      pointer-events: none;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1001;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+    }
+
+    .lightbox-close:hover {
+      background: var(--color-red);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      padding: 1rem;
+      cursor: pointer;
+      border-radius: var(--border-radius);
+      transition: var(--transition-fast);
+    }
+
+    .lightbox-nav:hover {
+      background: var(--color-magenta);
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      background: rgba(0,0,0,0.7);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      font-size: 0.9rem;
+    }
+
+    /* Email signup section */
+    .signup-section {
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .signup-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--color-black);
+    }
+
+    .signup-section p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #666;
+    }
+
+    .email-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .email-form input[type="email"] {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: var(--border-radius);
+      margin-bottom: 1rem;
+      transition: var(--transition-fast);
+    }
+
+    .email-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--color-magenta);
+    }
+
+    .submit-btn {
+      background: var(--color-orange);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition-medium);
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: var(--color-red);
+      transform: translateY(-2px);
+    }
+
+    .g-recaptcha {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      min-height: 78px; /* Standard reCAPTCHA height */
+    }
+
+    /* Payment links */
+    .payment-section {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .payment-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .payment-btn {
+      background: var(--color-magenta);
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: var(--transition-medium);
+      display: inline-block;
+    }
+
+    .payment-btn:hover {
+      background: var(--color-red);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-black);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+
+    .footer-logo {
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    /* Responsive design */
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      
+      .thumbnail {
+        max-height: 250px;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .logo {
+        max-width: 250px;
+      }
+      
+      .lightbox-nav {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+      }
+      
+      .lightbox-close {
+        top: 10px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+      
+      nav a {
+        margin: 0 0.5rem;
+        padding: 0.4rem 0.8rem;
+      }
+      
+      .image-caption {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      .lightbox, nav, .payment-section { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="assets/images/logos/seed13-header.jpg" alt="Seed 13 Productions" class="logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <h1>Seed 13 Productions</h1>
+    <p>Happy Father's Day 2025!</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#gallery">Gallery</a>
+    <a href="#payment">Order</a>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Gallery Section -->
+    <section id="gallery">
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Thumbnails will be populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="payment-section">
+      <h2>Get Started</h2>
+      <p>Enter your email to receive detailed instructions on how to submit your image and begin your custom transformation.</p>
+      
+      <!-- MailerLite Form Integration -->
+      <div id="mlb2-27075831" class="ml-form-embedContainer">
+        <form class="ml-block-form email-form" action="https://assets.mailerlite.com/jsonp/1586648/forms/156865447221790543/subscribe" method="post" target="_blank">
+          <input type="email" name="fields[email]" placeholder="Enter your email address" required autocomplete="email">
+          <div class="g-recaptcha" data-sitekey="6LdKYVwrAAAAAIMqOK6VZVeTHltajthI10v8fzdM"></div>
+          <input type="hidden" name="ml-submit" value="1">
+          <input type="hidden" name="anticsrf" value="true">
+          <button type="submit" class="submit-btn">Send Me Instructions</button>
+        </form>
+      </div>
+      
+      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #ddd;">
+        <h3 style="margin-bottom: 1rem;">Ready to Order?</h3>
+        <p style="margin-bottom: 1rem;">Secure payment processing:</p>
+        <div class="payment-links">
+          <a href="https://buy.stripe.com/bJe9ATg0R7je5dg1Yqawo00" class="payment-btn" target="_blank" rel="noopener">Order Now with Stripe</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-close" id="lightboxClose">&times;</div>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Full size image" id="lightboxImage">
+    </div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
+    <div class="lightbox-counter" id="lightboxCounter">1 / 24</div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <img src="assets/images/logos/seed13-footer.jpg" alt="Seed 13 Productions" class="footer-logo">
+    <p>&copy; 2025 Seed 13 Productions. All rights reserved.</p>
+    <p>Professional AI imagery with attitude.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://groot.mailerlite.com/js/w/webforms.min.js"></script>
+  
+  <script>
+    // Image configuration for better organization
+    const imageConfig = {
+      basePath: './assets/images/gallery/',
+      thumbPath: 'thumbs/',
+      fullPath: 'full/', // FIXED: Added 'full/' to correctly point to full-size images
+      extension: '.png'
+    };
+
+    // Image data with enhanced titles and descriptions - in proper order
+    const images = [
+      // Professional Portrait to lead off
+      { filename: 'businessman-headshot', title: 'Professional Photo', description: 'Sick of business casual?' },
+      
+      // All wizard stuff together
+      { filename: 'chrisdalf-wizard-greenscreen', title: 'Chrisdalf Wizard', description: 'Greenscreen or pick a scene' },
+      { filename: 'blue-wizard-greenscreen', title: 'Blue Wizard', description: 'Greenscreen or pick a scene' },
+      { filename: 'traditional-wizard-portrait', title: 'Traditional Wizard Portrait', description: 'Choose your character design' },
+      { filename: 'chrisdalf-tcg-card', title: 'Chrisdalf Action Figure', description: 'Wizard-themed action figure' },
+      { filename: 'stats-wizard-trainer-card', title: 'Stats Wizard Trainer Card', description: 'Poke me with your Magic card requests!' },
+      
+      // Chris throne images
+      { filename: 'king-on-golden-throne', title: 'King on Golden Throne', description: 'Pick a throne theme!' },
+      { filename: 'iron-throne-warrior', title: 'Iron Throne Warrior', description: 'Pick a throne theme!' },
+      
+      // Chris action figures - boxed first
+      { filename: 'mr-doucette-stats-figure', title: 'Mr. Doucette Stats Figure', description: 'Math teacher superhero' },
+      { filename: 'footie-fan-action-figure', title: 'Footie Fan', description: 'Limited edition styling' },
+      
+      // Chris action figures - unboxed
+      { filename: 'casual-greenscreen-portrait', title: 'Casual Portrait', description: 'Greenscreen or pick a scene' },
+      { filename: 'pink-polo-greenscreen', title: 'Pink Polo Green Screen', description: 'Greenscreen or pick a scene' },
+      
+      // Archer progression
+      { filename: 'archer-green-screen', title: 'Archer Green Screen', description: 'Greenscreen or pick a scene' },
+      { filename: 'medieval-archer-warrior', title: 'Medieval Archer Warrior', description: 'Choose your weapon and scene' },
+      
+      // Western stuff
+      { filename: 'cowgirl-legends-diorama', title: 'Cowgirl Legends', description: '3-4 props' },
+      { filename: 'dahlia-hex-wanted-poster', title: 'Dahlia Hex Wanted', description: 'Choose your text and reward' },
+      { filename: 'dahlia-hex-figure-package', title: 'Dahlia Hex Figure', description: 'Weapon specialist styling' },
+      
+      // Killer Rose series
+      { filename: 'killer-rose-action-figure', title: 'Killer Rose Figure', description: 'Collectible figure packaging' },
+      { filename: 'killer-rose-comic-cover', title: 'Killer Rose Comic', description: 'Special Collector\'s edition' },
+      { filename: 'killer-rose-comic-variant', title: 'Killer Rose Variant', description: 'Alternate cover design' },
+      
+      // Characters
+      { filename: 'bearded-hipster-character', title: 'Bearded Hipster', description: 'Just like gramma\'s!' },
+      { filename: 'fire-magic-schoolgirl', title: 'Fire Magic Girl', description: 'Have a little fun!' },
+      
+      // Same 2 at the end
+      { filename: 'skeleton-wizard', title: 'Skeleton Wizard', description: 'Can be hit-or-miss' },
+      { filename: 'witch-3d-model', title: 'Witch 3D Model', description: 'Ask about 3d model files' }
+    ];
+
+    let currentImageIndex = 0;
+
+    // Generate gallery thumbnails
+    function generateGallery() {
+      const galleryGrid = document.getElementById('galleryGrid');
+      
+      images.forEach((imageData, index) => {
+        const container = document.createElement('div');
+        container.className = 'thumbnail-container';
+        
+        const thumbPath = `${imageConfig.basePath}${imageConfig.thumbPath}${imageData.filename}-thumb${imageConfig.extension}`;
+        const fullPath = `${imageConfig.basePath}${imageConfig.fullPath}${imageData.filename}${imageConfig.extension}`;
+        
+        container.innerHTML = `
+          <img src="${thumbPath}" 
+               alt="${imageData.title}" 
+               class="thumbnail" 
+               data-index="${index}"
+               data-full="${fullPath}"
+               loading="lazy">
+          <div class="image-overlay">${imageData.description}</div>
+          <div class="image-caption">${imageData.title}</div>
+        `;
+        
+        galleryGrid.appendChild(container);
+      });
+    }
+
+    // Lightbox functionality
+    function initLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const lightboxPrev = document.getElementById('lightboxPrev');
+      const lightboxNext = document.getElementById('lightboxNext');
+      const lightboxCounter = document.getElementById('lightboxCounter');
+
+      // Open lightbox when thumbnail is clicked
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('thumbnail')) {
+          currentImageIndex = parseInt(e.target.dataset.index);
+          showLightbox();
+        }
+      });
+
+      // Close lightbox
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // Navigation
+      lightboxPrev.addEventListener('click', showPrevImage);
+      lightboxNext.addEventListener('click', showNextImage);
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === 'flex') {
+          switch(e.key) {
+            case 'Escape':
+              closeLightbox();
+              break;
+            case 'ArrowLeft':
+              showPrevImage();
+              break;
+            case 'ArrowRight':
+              showNextImage();
+              break;
+          }
+        }
+      });
+
+      function showLightbox() {
+        const image = images[currentImageIndex];
+        const fullPath = `${imageConfig.basePath}${imageConfig.fullPath}${image.filename}${imageConfig.extension}`;
+        lightboxImage.src = fullPath;
+        lightboxImage.alt = image.title;
+        lightboxCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      }
+
+      function closeLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        lightboxImage.src = ''; // Clear image to save memory
+      }
+
+      function showPrevImage() {
+        currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : images.length - 1;
+        showLightbox();
+      }
+
+      function showNextImage() {
+        currentImageIndex = currentImageIndex < images.length - 1 ? currentImageIndex + 1 : 0;
+        showLightbox();
+      }
+    }
+
+    // Smooth scrolling for navigation links
+    function initSmoothScrolling() {
+      document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
+
+    // MailerLite success callback
+    function ml_webform_success_27075831() {
+      const form = document.querySelector('.ml-block-form');
+      form.innerHTML = `
+        <h3 style="color: var(--color-magenta); margin-bottom: 1rem;">Thank You!</h3>
+        <p>You'll receive detailed instructions in your email shortly. Check your spam folder if you don't see it within a few minutes.</p>
+      `;
+    }
+
+    // Security measures
+    function initSecurity() {
+      // Disable right-click context menu on images
+      document.addEventListener('contextmenu', (e) => {
+        if (e.target.tagName === 'IMG') {
+          e.preventDefault();
+        }
+      });
+
+      // Disable common keyboard shortcuts for saving/copying
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'a' || e.key === 'c')) {
+          if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+          }
+        }
+      });
+
+      // Disable drag and drop
+      document.addEventListener('dragstart', (e) => {
+        if (e.target.tagName === 'IMG') {
+          e.preventDefault();
+        }
+      });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      generateGallery();
+      initLightbox();
+      initSmoothScrolling();
+      initSecurity();
+    });
+
+    // Performance optimization: Lazy loading for images
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.src; // Trigger actual loading
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      // Observe all thumbnail images after they're created
+      setTimeout(() => {
+        document.querySelectorAll('.thumbnail').forEach(img => {
+          imageObserver.observe(img);
+        });
+      }, 100);
+    }
+  </script>
+</body>
+</html>

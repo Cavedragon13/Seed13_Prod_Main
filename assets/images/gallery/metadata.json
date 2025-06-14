@@ -1,0 +1,464 @@
+{
+  "generated_at": "2025-06-11T00:09:16.372848",
+  "total_images": 24,
+  "images": [
+    {
+      "filename": "Seed13_01.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2280179,
+      "file_size_mb": 2.17,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_02.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2490368,
+      "file_size_mb": 2.38,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_04.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2184753,
+      "file_size_mb": 2.08,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_05.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2986342,
+      "file_size_mb": 2.85,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_06.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 3269264,
+      "file_size_mb": 3.12,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_09.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 3106739,
+      "file_size_mb": 2.96,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_11.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2634429,
+      "file_size_mb": 2.51,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_55.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2982462,
+      "file_size_mb": 2.84,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_57.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2227379,
+      "file_size_mb": 2.12,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_58.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2346324,
+      "file_size_mb": 2.24,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_59.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2985509,
+      "file_size_mb": 2.85,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_61.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 3391706,
+      "file_size_mb": 3.23,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_62.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 3513410,
+      "file_size_mb": 3.35,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_64.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2924222,
+      "file_size_mb": 2.79,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_65.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 3311511,
+      "file_size_mb": 3.16,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_66.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2441118,
+      "file_size_mb": 2.33,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_AF_03.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2573960,
+      "file_size_mb": 2.45,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_AF_07.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 3370997,
+      "file_size_mb": 3.21,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_AF_08.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2657345,
+      "file_size_mb": 2.53,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_Greenscreen_01.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2257891,
+      "file_size_mb": 2.15,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_Greenscreen_02.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2431110,
+      "file_size_mb": 2.32,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_Greenscreen_03.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2653272,
+      "file_size_mb": 2.53,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:45"
+    },
+    {
+      "filename": "Seed13_Greenscreen_05.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2235912,
+      "file_size_mb": 2.13,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    },
+    {
+      "filename": "Seed13_Greenscreen_06.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "format": "PNG",
+      "file_size_bytes": 2770292,
+      "file_size_mb": 2.64,
+      "aspect_ratio": 0.67,
+      "last_modified": "2025-06-10T20:55:46"
+    }
+  ],
+  "thumbnails": [
+    {
+      "original": "Seed13_01.png",
+      "thumbnail": "Seed13_01_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_02.png",
+      "thumbnail": "Seed13_02_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_04.png",
+      "thumbnail": "Seed13_04_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_05.png",
+      "thumbnail": "Seed13_05_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_06.png",
+      "thumbnail": "Seed13_06_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_09.png",
+      "thumbnail": "Seed13_09_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_11.png",
+      "thumbnail": "Seed13_11_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_55.png",
+      "thumbnail": "Seed13_55_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_57.png",
+      "thumbnail": "Seed13_57_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_58.png",
+      "thumbnail": "Seed13_58_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_59.png",
+      "thumbnail": "Seed13_59_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_61.png",
+      "thumbnail": "Seed13_61_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_62.png",
+      "thumbnail": "Seed13_62_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_64.png",
+      "thumbnail": "Seed13_64_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_65.png",
+      "thumbnail": "Seed13_65_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_66.png",
+      "thumbnail": "Seed13_66_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_AF_03.png",
+      "thumbnail": "Seed13_AF_03_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_AF_07.png",
+      "thumbnail": "Seed13_AF_07_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_AF_08.png",
+      "thumbnail": "Seed13_AF_08_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_Greenscreen_01.png",
+      "thumbnail": "Seed13_Greenscreen_01_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_Greenscreen_02.png",
+      "thumbnail": "Seed13_Greenscreen_02_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_Greenscreen_03.png",
+      "thumbnail": "Seed13_Greenscreen_03_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_Greenscreen_05.png",
+      "thumbnail": "Seed13_Greenscreen_05_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    },
+    {
+      "original": "Seed13_Greenscreen_06.png",
+      "thumbnail": "Seed13_Greenscreen_06_thumb.png",
+      "thumbnail_size": [
+        133,
+        200
+      ]
+    }
+  ]
+}

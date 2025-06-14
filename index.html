@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Seed 13 Productions</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google font (lightweight single-style) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Page styles -->
+  <style>
+  :root{
+    --black:#000;--orange:#E65100;--red:#D32F2F;--magenta:#AB47BC;--lav:#EDE7F6;
+    --dgray:#212121;--fast:.2s ease;--med:.3s ease;--br:8px;--sh:0 2px 8px rgb(0 0 0/.1)
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Poppins,sans-serif;background:var(--lav);color:var(--black);line-height:1.6;overflow-x:hidden}
+  a{color:var(--orange);text-decoration:none;font-weight:600;transition:var(--fast)}
+  a:hover{color:var(--red)}
+  header{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center}
+  nav{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap}
+  nav a{padding:.3rem 1rem;border-radius:var(--br)}
+  nav a:hover{background:var(--orange);color:#fff}
+  .container{max-width:1200px;margin:auto;padding:2rem 1rem}
+  /* Gallery */
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;margin-bottom:4rem}
+  .thumbnail-container{background:#fff;border-radius:var(--br);overflow:hidden;box-shadow:var(--sh);transition:var(--med);display:flex;flex-direction:column;min-height:200px;position:relative}
+  .thumbnail-container:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgb(0 0 0/.15)}
+  .thumbnail{width:100%;height:auto;max-height:300px;object-fit:contain;transition:var(--med);cursor:pointer}
+  .thumbnail-container:hover .thumbnail{transform:scale(1.05)}
+  .image-overlay{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);color:#fff;padding:1rem;font-size:.85rem;text-align:center;transform:translateY(100%);transition:transform var(--med);pointer-events:none}
+  .thumbnail-container:hover .image-overlay{transform:translateY(0)}
+  .image-caption{background:#fff;padding:.75rem;font-size:.9rem;font-weight:500;text-align:center}
+  /* Lightbox */
+  .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;justify-content:center;align-items:center}
+  .lightbox-btn{position:absolute;background:rgba(0,0,0,.5);color:#fff;border:none;font-size:1.8rem;padding:1rem;border-radius:50%;cursor:pointer}
+  #lightboxClose{top:20px;right:30px}
+  #lightboxPrev{left:20px;top:50%;transform:translateY(-50%)}
+  #lightboxNext{right:20px;top:50%;transform:translateY(-50%)}
+  #lightboxImage{max-width:80vw;max-height:80vh;border-radius:var(--br);pointer-events:none}
+  #lightboxCounter{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;padding:.5rem 1rem;border-radius:var(--br);font-size:.9rem}
+  /* Contact / order form */
+  form{max-width:600px;margin:0 auto 4rem;background:#fff;padding:2rem;border-radius:var(--br);box-shadow:var(--sh);display:grid;gap:1rem}
+  label{font-weight:600}
+  input,select,textarea{width:100%;padding:.65rem;border:1px solid #ccc;border-radius:var(--br);font-family:inherit;font-size:1rem}
+  textarea{min-height:120px;resize:vertical}
+  button[type=submit]{background:var(--orange);color:#fff;border:none;padding:.75rem 1.25rem;font-size:1rem;border-radius:var(--br);cursor:pointer;transition:var(--fast)}
+  button[type=submit]:hover{background:var(--red)}
+  /* Responsive tweaks */
+  @media(max-width:600px){
+    header h1{font-size:1.55rem}
+  }
+  </style>
+</head>
+
+<body>
+<header>
+  <img src="assets/images/logos/seed13-header.jpg" alt="Seed 13 Productions logo" style="max-width:300px;width:100%;margin-bottom:.5rem" onerror="this.style.display='none'">
+  <h1>Seed 13 Productions</h1>
+  <p style="font-weight:500;color:var(--magenta)">#noking</p>
+</header>
+
+<nav>
+  <a href="#gallery">Gallery</a>
+  <a href="#order">Order</a>
+</nav>
+
+<div class="container">
+  <!-- ░░░ Gallery ░░░ -->
+  <section id="gallery">
+    <h2 style="text-align:center;margin-bottom:1.5rem">Gallery</h2>
+    <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+  </section>
+
+  <!-- ░░░ Order / Contact form ░░░ -->
+  <section id="order">
+    <h2 style="text-align:center;margin:3rem 0 1.5rem">Place an Order / Contact</h2>
+
+    <form id="orderForm" action="submit-form.php" method="post" enctype="multipart/form-data" novalidate>
+      <div>
+        <label for="name">Name *</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+
+      <div>
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+
+      <div>
+        <label for="style">Choose a style *</label>
+        <select id="style" name="style" required>
+          <option value="">-- select --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="custom">Custom request / notes</label>
+        <textarea id="custom" name="custom" placeholder="Tell us exactly what you need…"></textarea>
+      </div>
+
+      <div>
+        <label for="files">Upload reference images (PNG/JPG – max 3 files, 5 MB each)</label>
+        <input id="files" name="files[]" type="file" accept=".png,.jpg,.jpeg" multiple>
+      </div>
+
+      <button type="submit">Send request</button>
+    </form>
+  </section>
+</div>
+
+<!-- ░░░ Lightbox markup ░░░ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lightboxClose" class="lightbox-btn" aria-label="Close">&times;</button>
+  <button id="lightboxPrev"  class="lightbox-btn" aria-label="Previous">&#8249;</button>
+  <div style="max-width:90vw;max-height:90vh;display:flex;justify-content:center;align-items:center">
+    <img id="lightboxImage" src="" alt="">
+  </div>
+  <button id="lightboxNext"  class="lightbox-btn" aria-label="Next">&#8250;</button>
+  <div id="lightboxCounter"></div>
+</div>
+
+<!-- ░░░ Main script ░░░ -->
+<script>
+/* ---- Config ------------------------------------------------------------- */
+const cfg={
+  base:'assets/gallery/',   // <-- fixed path
+  thumb:'thumbs/',
+  full:'full/',
+  ext:'.png'
+};
+
+const images=[
+  {fn:'businessman-headshot',title:'Professional Photo',desc:'Sick of business casual?'},
+  {fn:'chrisdalf-wizard-greenscreen',title:'Chrisdalf Wizard',desc:'Greenscreen or pick a scene'},
+  {fn:'blue-wizard-greenscreen',title:'Blue Wizard',desc:'Greenscreen or pick a scene'},
+  {fn:'traditional-wizard-portrait',title:'Traditional Wizard Portrait',desc:'Choose your character design'},
+  {fn:'chrisdalf-tcg-card',title:'Chrisdalf Action Figure',desc:'Wizard-themed action figure'},
+  {fn:'stats-wizard-trainer-card',title:'Stats Wizard Trainer Card',desc:'Poke me with your Magic card requests!'},
+  {fn:'king-on-golden-throne',title:'King on Golden Throne',desc:'Pick a throne theme!'},
+  {fn:'iron-throne-warrior',title:'Iron Throne Warrior',desc:'Pick a throne theme!'},
+  {fn:'mr-doucette-stats-figure',title:'Mr. Doucette Stats Figure',desc:'Math teacher superhero'},
+  {fn:'footie-fan-action-figure',title:'Footie Fan',desc:'Limited edition styling'},
+  {fn:'casual-greenscreen-portrait',title:'Casual Portrait',desc:'Greenscreen or pick a scene'},
+  {fn:'pink-polo-greenscreen',title:'Pink Polo Green Screen',desc:'Greenscreen or pick a scene'},
+  {fn:'archer-green-screen',title:'Archer Green Screen',desc:'Greenscreen or pick a scene'},
+  {fn:'medieval-archer-warrior',title:'Medieval Archer Warrior',desc:'Choose your weapon and scene'},
+  {fn:'cowgirl-legends-diorama',title:'Cowgirl Legends',desc:'3-4 props'},
+  {fn:'dahlia-hex-wanted-poster',title:'Dahlia Hex Wanted',desc:'Choose your text and reward'},
+  {fn:'dahlia-hex-figure-package',title:'Dahlia Hex Figure',desc:'Weapon specialist styling'},
+  {fn:'killer-rose-action-figure',title:'Killer Rose Figure',desc:'Collectible figure packaging'},
+  {fn:'killer-rose-comic-cover',title:'Killer Rose Comic',desc:'Special Collector’s Edition'},
+  {fn:'killer-rose-comic-variant',title:'Killer Rose Variant',desc:'Alternate cover design'},
+  {fn:'bearded-hipster-character',title:'Bearded Hipster',desc:'Just like gramma’s!'},
+  {fn:'fire-magic-schoolgirl',title:'Fire Magic Girl',desc:'Have a little fun!'},
+  {fn:'skeleton-wizard',title:'Skeleton Wizard',desc:'Can be hit-or-miss'},
+  {fn:'witch-3d-model',title:'Witch 3D Model',desc:'Ask about 3D model files'}
+];
+
+/* ---- Helpers ------------------------------------------------------------ */
+const escapeHTML=s=>s.replace(/[&<>'"]/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t]));
+
+/* ---- Build gallery ------------------------------------------------------ */
+function buildGallery(){
+  const grid=document.getElementById('galleryGrid');
+  images.forEach((im,i)=>{
+    const thumb=`${cfg.base}${cfg.thumb}${im.fn}-thumb${cfg.ext}`;
+    const full =`${cfg.base}${cfg.full}${im.fn}${cfg.ext}`;
+    grid.insertAdjacentHTML('beforeend',`
+      <div class="thumbnail-container">
+        <img src="${thumb}" alt="${escapeHTML(im.title)}" class="thumbnail" loading="lazy"
+             data-index="${i}" data-full="${full}">
+        <div class="image-overlay">${escapeHTML(im.desc)}</div>
+        <div class="image-caption">${escapeHTML(im.title)}</div>
+      </div>
+    `);
+  });
+}
+
+/* ---- Lightbox ----------------------------------------------------------- */
+function initLightbox(){
+  const box=document.getElementById('lightbox');
+  const pic=document.getElementById('lightboxImage');
+  const cnt=document.getElementById('lightboxCounter');
+  let idx=0;
+
+  document.addEventListener('click',e=>{
+    if(e.target.classList.contains('thumbnail')){
+      idx=+e.target.dataset.index;
+      open(e.target.dataset.full,e.target.alt);
+    }
+  });
+
+  document.getElementById('lightboxClose').onclick=close;
+  document.getElementById('lightboxPrev').onclick=()=>nav(-1);
+  document.getElementById('lightboxNext').onclick=()=>nav(1);
+
+  document.addEventListener('keydown',e=>{
+    if(box.style.display!=='flex')return;
+    if(e.key==='Escape')close();
+    if(e.key==='ArrowLeft')nav(-1);
+    if(e.key==='ArrowRight')nav(1);
+  });
+
+  box.addEventListener('click',e=>{if(e.target===box)close();});
+
+  function open(src,alt){
+    pic.src=src;
+    pic.alt=alt;
+    cnt.textContent=`${idx+1} / ${images.length}`;
+    box.style.display='flex';
+    document.body.style.overflow='hidden';
+  }
+  function close(){
+    box.style.display='none';
+    pic.src='';
+    document.body.style.overflow='';
+  }
+  function nav(step){
+    idx=(idx+step+images.length)%images.length;
+    const thumb=document.querySelector(`.thumbnail[data-index="${idx}"]`);
+    if(thumb)open(thumb.dataset.full,thumb.alt);
+  }
+}
+
+/* ---- Populate style <select> ------------------------------------------- */
+function populateStyleOptions(){
+  const sel=document.getElementById('style');
+  images.forEach(im=>{
+    sel.insertAdjacentHTML('beforeend',
+      `<option value="${escapeHTML(im.title)}">${escapeHTML(im.title)}</option>`);
+  });
+}
+
+/* ---- Client-side form validation --------------------------------------- */
+document.getElementById('orderForm').addEventListener('submit',e=>{
+  const files=document.getElementById('files').files;
+  if(files.length>3){
+    alert('Please upload no more than 3 files.');
+    return e.preventDefault();
+  }
+  for(const f of files){
+    if(f.size>5*1024*1024){
+      alert('Files must be under 5 MB.');
+      return e.preventDefault();
+    }
+  }
+});
+
+/* ---- Init --------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded',()=>{
+  buildGallery();
+  initLightbox();
+  populateStyleOptions();
+});
+</script>
+</body>
+</html>
