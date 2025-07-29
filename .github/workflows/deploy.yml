@@ -35,6 +35,9 @@ jobs:
           ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la public_html/ || echo 'public_html not found'"
           ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la domains/seed13productions.com/public_html/ || echo 'domains path not found'"
           
+          # Force remove old index.html and deploy fresh
+          ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "rm -f domains/seed13productions.com/public_html/index.html"
+          
           # Deploy using rsync with SSH (try domains path)
           rsync -avz --delete \
             -e "ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no" \
