@@ -28,6 +28,9 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
           
+          # First, check what directories exist
+          ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la"
+          
           # Deploy using rsync with SSH (main site to root)
           rsync -avz --delete \
             -e "ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no" \
