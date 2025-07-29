@@ -31,11 +31,15 @@ jobs:
           # First, check what directories exist
           ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la"
           
-          # Deploy using rsync with SSH (main site to root)
+          # Try common web directory locations
+          ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la public_html/ || echo 'public_html not found'"
+          ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la domains/seed13productions.com/public_html/ || echo 'domains path not found'"
+          
+          # Deploy using rsync with SSH (try domains path)
           rsync -avz --delete \
             -e "ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no" \
             --exclude='.git*' --exclude='README.md' \
-            ./ $SSH_USER@$SSH_HOST:public_html/
+            ./ $SSH_USER@$SSH_HOST:domains/seed13productions.com/public_html/
           
           # Clean up key file
           rm -f key.pem
