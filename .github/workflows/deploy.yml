@@ -24,7 +24,8 @@ jobs:
           echo "$SSH_KEY" > key.pem
           chmod 600 key.pem
           
-          # Add host to known_hosts to avoid fingerprint prompt
+          # Create .ssh directory and add host to known_hosts
+          mkdir -p ~/.ssh
           ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
           
           # Deploy using rsync with SSH (main site to root)
