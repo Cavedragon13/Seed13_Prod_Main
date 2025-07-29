@@ -1,0 +1,37 @@
+name: SFTP Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy via rsync over SSH
+        env:
+          SSH_HOST: 82.197.80.13
+          SSH_PORT: 65002
+          SSH_USER: u760631640
+          SSH_KEY: ${{ secrets.HOSTINGER_SFTP_KEY }}
+        run: |
+          # Create SSH key file
+          echo "$SSH_KEY" > key.pem
+          chmod 600 key.pem
+          
+          # Add host to known_hosts to avoid fingerprint prompt
+          ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
+          
+          # Deploy using rsync with SSH (main site to root)
+          rsync -avz --delete \
+            -e "ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no" \
+            --exclude='.git*' --exclude='README.md' \
+            ./ $SSH_USER@$SSH_HOST:public_html/
+          
+          # Clean up key file
+          rm -f key.pem

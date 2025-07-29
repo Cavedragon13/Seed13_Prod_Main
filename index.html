@@ -1,261 +1,912 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Seed 13 Productions</title>
-  <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cavedragon - AI Artist | Seed 13 Productions</title>
+    <meta name="description" content="Professional AI-generated art by Cavedragon. Fantasy, sci-fi, portraits, and experimental digital art. Custom commissions available. Interactive games and creative tools.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Modern Dark Theme */
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #1a1a2e;
+            --accent-bg: #16213e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #ff6b9d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Layout */
+            --radius: 8px;
+            --radius-large: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 30px rgba(0, 212, 255, 0.2);
+            
+            /* Gallery specific */
+            --thumb-size: 200px;
+            --thumb-height: 300px;
+            --gap: 1.5rem;
+        }
 
-  <!-- Google font (lightweight single-style) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Page styles -->
-  <style>
-  :root{
-    --black:#000;--orange:#E65100;--red:#D32F2F;--magenta:#AB47BC;--lav:#EDE7F6;
-    --dgray:#212121;--fast:.2s ease;--med:.3s ease;--br:8px;--sh:0 2px 8px rgb(0 0 0/.1)
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Poppins,sans-serif;background:var(--lav);color:var(--black);line-height:1.6;overflow-x:hidden}
-  a{color:var(--orange);text-decoration:none;font-weight:600;transition:var(--fast)}
-  a:hover{color:var(--red)}
-  header{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center}
-  nav{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap}
-  nav a{padding:.3rem 1rem;border-radius:var(--br)}
-  nav a:hover{background:var(--orange);color:#fff}
-  .container{max-width:1200px;margin:auto;padding:2rem 1rem}
-  /* Gallery */
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;margin-bottom:4rem}
-  .thumbnail-container{background:#fff;border-radius:var(--br);overflow:hidden;box-shadow:var(--sh);transition:var(--med);display:flex;flex-direction:column;min-height:200px;position:relative}
-  .thumbnail-container:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgb(0 0 0/.15)}
-  .thumbnail{width:100%;height:auto;max-height:300px;object-fit:contain;transition:var(--med);cursor:pointer}
-  .thumbnail-container:hover .thumbnail{transform:scale(1.05)}
-  .image-overlay{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);color:#fff;padding:1rem;font-size:.85rem;text-align:center;transform:translateY(100%);transition:transform var(--med);pointer-events:none}
-  .thumbnail-container:hover .image-overlay{transform:translateY(0)}
-  .image-caption{background:#fff;padding:.75rem;font-size:.9rem;font-weight:500;text-align:center}
-  /* Lightbox */
-  .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;justify-content:center;align-items:center}
-  .lightbox-btn{position:absolute;background:rgba(0,0,0,.5);color:#fff;border:none;font-size:1.8rem;padding:1rem;border-radius:50%;cursor:pointer}
-  #lightboxClose{top:20px;right:30px}
-  #lightboxPrev{left:20px;top:50%;transform:translateY(-50%)}
-  #lightboxNext{right:20px;top:50%;transform:translateY(-50%)}
-  #lightboxImage{max-width:80vw;max-height:80vh;border-radius:var(--br);pointer-events:none}
-  #lightboxCounter{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;padding:.5rem 1rem;border-radius:var(--br);font-size:.9rem}
-  /* Contact / order form */
-  form{max-width:600px;margin:0 auto 4rem;background:#fff;padding:2rem;border-radius:var(--br);box-shadow:var(--sh);display:grid;gap:1rem}
-  label{font-weight:600}
-  input,select,textarea{width:100%;padding:.65rem;border:1px solid #ccc;border-radius:var(--br);font-family:inherit;font-size:1rem}
-  textarea{min-height:120px;resize:vertical}
-  button[type=submit]{background:var(--orange);color:#fff;border:none;padding:.75rem 1.25rem;font-size:1rem;border-radius:var(--br);cursor:pointer;transition:var(--fast)}
-  button[type=submit]:hover{background:var(--red)}
-  /* Responsive tweaks */
-  @media(max-width:600px){
-    header h1{font-size:1.55rem}
-  }
-  </style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, var(--accent-bg) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-medium);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--secondary-bg) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 20%, var(--accent-bg) 0%, transparent 50%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-medium);
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Project Showcase */
+        .projects {
+            padding: 5rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .projects h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-large);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-medium);
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-primary);
+        }
+
+        .project-card h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .project-link:hover {
+            color: var(--accent-secondary);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 0;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--gap);
+            max-width: 1000px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .thumbnail {
+            width: var(--thumb-size);
+            height: var(--thumb-height);
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            user-select: none;
+            pointer-events: auto;
+            transition: all var(--transition-medium);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            -webkit-user-drag: none;
+        }
+
+        .thumbnail:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-primary);
+        }
+
+        .thumbnail:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Modal/Lightbox */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; 
+            top: 0; 
+            right: 0; 
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: all var(--transition-medium);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-img {
+            max-height: 80vh;
+            max-width: 90vw;
+            border-radius: var(--radius-large);
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        .modal-nav {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .modal-btn {
+            background: var(--accent-primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.7em 1.4em;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+        }
+
+        .modal-btn:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            font-size: 2rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            z-index: 2100;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+
+        .close-btn:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* E-commerce Section */
+        .ecommerce {
+            padding: 5rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .ecommerce h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .commerce-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
+            gap: 1rem;
+        }
+
+        .email-form label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .email-form input[type="email"] {
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            width: 280px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+
+        .email-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .stripe-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stripe-link {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            transition: all var(--transition-medium);
+            display: inline-block;
+        }
+
+        .stripe-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .email-msg {
+            font-size: 0.95em;
+            color: var(--accent-primary);
+            margin-top: 1rem;
+        }
+
+        /* Order Form */
+        .order {
+            padding: 5rem 0;
+        }
+
+        .order h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .order-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow);
+            display: grid;
+            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .order-form label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .order-form input, 
+        .order-form select, 
+        .order-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+
+        .order-form input:focus, 
+        .order-form select:focus, 
+        .order-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .order-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .order-form button[type="submit"] {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition-medium);
+            font-weight: 600;
+        }
+
+        .order-form button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none; /* Mobile menu needed */
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .gallery-grid {
+                gap: 0.7rem;
+            }
+
+            .thumbnail {
+                width: 150px;
+                height: 200px;
+            }
+
+            .modal-img {
+                max-width: 98vw;
+                max-height: 60vh;
+            }
+
+            .stripe-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--accent-primary);
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-<header>
-  <img src="assets/images/logos/seed13-header.jpg" alt="Seed 13 Productions logo" style="max-width:300px;width:100%;margin-bottom:.5rem" onerror="this.style.display='none'">
-  <h1>Seed 13 Productions</h1>
-  <p style="font-weight:500;color:var(--magenta)">#noking</p>
-</header>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">Seed 13 Productions</a>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#order">Custom Order</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<nav>
-  <a href="#gallery">Gallery</a>
-  <a href="#order">Order</a>
-</nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Cavedragon</h1>
+                    <h2>AI Artist & Creative Developer</h2>
+                    <p>Professional AI-generated art, interactive experiences, and creative tools. From fantasy portraits to experimental digital art, bringing imagination to life through technology.</p>
+                    <div class="cta-buttons">
+                        <a href="#gallery" class="btn btn-primary">View Gallery</a>
+                        <a href="#projects" class="btn btn-secondary">Explore Projects</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <!-- Space for hero image if needed -->
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="container">
-  <!-- ░░░ Gallery ░░░ -->
-  <section id="gallery">
-    <h2 style="text-align:center;margin-bottom:1.5rem">Gallery</h2>
-    <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
-  </section>
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Interactive Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>🎮 Survival Games</h3>
+                    <p>Test your survival instincts with expert-validated scenarios from NASA, Coast Guard, and other professional organizations.</p>
+                    <a href="/games/survival/" class="project-link">Play Games →</a>
+                </div>
+                <div class="project-card">
+                    <h3>🖼️ Character Galleries</h3>
+                    <p>Explore collections of AI-generated characters, from fantasy heroes to sci-fi adventurers.</p>
+                    <a href="/galleries/characters/" class="project-link">Browse Galleries →</a>
+                </div>
+                <div class="project-card">
+                    <h3>🛠️ Creative Tools</h3>
+                    <p>Utility applications for 3D model processing, file organization, and creative workflows.</p>
+                    <a href="/tools/" class="project-link">View Tools →</a>
+                </div>
+                <div class="project-card">
+                    <h3>📈 Data Visualizations</h3>
+                    <p>Interactive dashboards and real-time data displays, including cryptocurrency trackers.</p>
+                    <a href="/data/" class="project-link">See Visualizations →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- ░░░ Order / Contact form ░░░ -->
-  <section id="order">
-    <h2 style="text-align:center;margin:3rem 0 1.5rem">Place an Order / Contact</h2>
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>Art Gallery</h2>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
 
-    <form id="orderForm" action="submit-form.php" method="post" enctype="multipart/form-data" novalidate>
-      <div>
-        <label for="name">Name *</label>
-        <input id="name" name="name" type="text" required>
-      </div>
+    <!-- Modal/Lightbox -->
+    <div class="modal" id="modal">
+        <button class="close-btn" id="closeModal" aria-label="Close">&times;</button>
+        <img class="modal-img" id="modalImg" src="" alt="Artwork" draggable="false">
+        <div class="modal-nav">
+            <button class="modal-btn" id="prevBtn">Previous</button>
+            <button class="modal-btn" id="nextBtn">Next</button>
+            <button class="modal-btn" id="homeBtn">Gallery</button>
+        </div>
+    </div>
 
-      <div>
-        <label for="email">Email *</label>
-        <input id="email" name="email" type="email" required>
-      </div>
+    <!-- E-commerce Section -->
+    <section id="shop" class="ecommerce">
+        <div class="container">
+            <h2>Shop & Support</h2>
+            <div class="commerce-container">
+                <form class="email-form" id="emailForm" autocomplete="off">
+                    <label for="email">Join the mailing list for updates:</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                    <div id="emailMsg" class="email-msg"></div>
+                </form>
 
-      <div>
-        <label for="style">Choose a style *</label>
-        <select id="style" name="style" required>
-          <option value="">-- select --</option>
-        </select>
-      </div>
+                <div class="stripe-links">
+                    <a class="stripe-link" href="https://buy.stripe.com/bJe9ATg0R7je5dg1Yqawo00" target="_blank" rel="noopener">Order Print</a>
+                    <a class="stripe-link" href="https://buy.stripe.com/bJe9ATg0R7je5dg1Yqawo00" target="_blank" rel="noopener">Support Artist</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div>
-        <label for="custom">Custom request / notes</label>
-        <textarea id="custom" name="custom" placeholder="Tell us exactly what you need…"></textarea>
-      </div>
+    <!-- Custom Order Section -->
+    <section id="order" class="order">
+        <div class="container">
+            <h2>Custom Commission</h2>
+            <form class="order-form" id="orderForm" action="submit-form.php" method="post" enctype="multipart/form-data" novalidate>
+                <div>
+                    <label for="name">Name *</label>
+                    <input id="name" name="name" type="text" required>
+                </div>
 
-      <div>
-        <label for="files">Upload reference images (PNG/JPG – max 3 files, 5 MB each)</label>
-        <input id="files" name="files[]" type="file" accept=".png,.jpg,.jpeg" multiple>
-      </div>
+                <div>
+                    <label for="orderEmail">Email *</label>
+                    <input id="orderEmail" name="email" type="email" required>
+                </div>
 
-      <button type="submit">Send request</button>
-    </form>
-  </section>
-</div>
+                <div>
+                    <label for="style">Choose a style *</label>
+                    <select id="style" name="style" required>
+                        <option value="">-- select --</option>
+                    </select>
+                </div>
 
-<!-- ░░░ Lightbox markup ░░░ -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <button id="lightboxClose" class="lightbox-btn" aria-label="Close">&times;</button>
-  <button id="lightboxPrev"  class="lightbox-btn" aria-label="Previous">&#8249;</button>
-  <div style="max-width:90vw;max-height:90vh;display:flex;justify-content:center;align-items:center">
-    <img id="lightboxImage" src="" alt="">
-  </div>
-  <button id="lightboxNext"  class="lightbox-btn" aria-label="Next">&#8250;</button>
-  <div id="lightboxCounter"></div>
-</div>
+                <div>
+                    <label for="notes">Notes / Special requests</label>
+                    <textarea id="notes" name="notes" placeholder="Describe your vision, specific requirements, or any questions..."></textarea>
+                </div>
 
-<!-- ░░░ Main script ░░░ -->
-<script>
-/* ---- Config ------------------------------------------------------------- */
-const cfg={
-  base:'assets/gallery/',   // <-- fixed path
-  thumb:'thumbs/',
-  full:'full/',
-  ext:'.png'
-};
+                <div>
+                    <label for="files">Reference images (up to 3 files, max 5MB each)</label>
+                    <input id="files" name="files[]" type="file" multiple accept="image/*">
+                </div>
 
-const images=[
-  {fn:'businessman-headshot',title:'Professional Photo',desc:'Sick of business casual?'},
-  {fn:'chrisdalf-wizard-greenscreen',title:'Chrisdalf Wizard',desc:'Greenscreen or pick a scene'},
-  {fn:'blue-wizard-greenscreen',title:'Blue Wizard',desc:'Greenscreen or pick a scene'},
-  {fn:'traditional-wizard-portrait',title:'Traditional Wizard Portrait',desc:'Choose your character design'},
-  {fn:'chrisdalf-tcg-card',title:'Chrisdalf Action Figure',desc:'Wizard-themed action figure'},
-  {fn:'stats-wizard-trainer-card',title:'Stats Wizard Trainer Card',desc:'Poke me with your Magic card requests!'},
-  {fn:'king-on-golden-throne',title:'King on Golden Throne',desc:'Pick a throne theme!'},
-  {fn:'iron-throne-warrior',title:'Iron Throne Warrior',desc:'Pick a throne theme!'},
-  {fn:'mr-doucette-stats-figure',title:'Mr. Doucette Stats Figure',desc:'Math teacher superhero'},
-  {fn:'footie-fan-action-figure',title:'Footie Fan',desc:'Limited edition styling'},
-  {fn:'casual-greenscreen-portrait',title:'Casual Portrait',desc:'Greenscreen or pick a scene'},
-  {fn:'pink-polo-greenscreen',title:'Pink Polo Green Screen',desc:'Greenscreen or pick a scene'},
-  {fn:'archer-green-screen',title:'Archer Green Screen',desc:'Greenscreen or pick a scene'},
-  {fn:'medieval-archer-warrior',title:'Medieval Archer Warrior',desc:'Choose your weapon and scene'},
-  {fn:'cowgirl-legends-diorama',title:'Cowgirl Legends',desc:'3-4 props'},
-  {fn:'dahlia-hex-wanted-poster',title:'Dahlia Hex Wanted',desc:'Choose your text and reward'},
-  {fn:'dahlia-hex-figure-package',title:'Dahlia Hex Figure',desc:'Weapon specialist styling'},
-  {fn:'killer-rose-action-figure',title:'Killer Rose Figure',desc:'Collectible figure packaging'},
-  {fn:'killer-rose-comic-cover',title:'Killer Rose Comic',desc:'Special Collector’s Edition'},
-  {fn:'killer-rose-comic-variant',title:'Killer Rose Variant',desc:'Alternate cover design'},
-  {fn:'bearded-hipster-character',title:'Bearded Hipster',desc:'Just like gramma’s!'},
-  {fn:'fire-magic-schoolgirl',title:'Fire Magic Girl',desc:'Have a little fun!'},
-  {fn:'skeleton-wizard',title:'Skeleton Wizard',desc:'Can be hit-or-miss'},
-  {fn:'witch-3d-model',title:'Witch 3D Model',desc:'Ask about 3D model files'}
-];
+                <button type="submit">Send Commission Request</button>
+            </form>
+        </div>
+    </section>
 
-/* ---- Helpers ------------------------------------------------------------ */
-const escapeHTML=s=>s.replace(/[&<>'"]/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t]));
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Seed 13 Productions. All rights reserved. | #noking</p>
+        </div>
+    </footer>
 
-/* ---- Build gallery ------------------------------------------------------ */
-function buildGallery(){
-  const grid=document.getElementById('galleryGrid');
-  images.forEach((im,i)=>{
-    const thumb=`${cfg.base}${cfg.thumb}${im.fn}-thumb${cfg.ext}`;
-    const full =`${cfg.base}${cfg.full}${im.fn}${cfg.ext}`;
-    grid.insertAdjacentHTML('beforeend',`
-      <div class="thumbnail-container">
-        <img src="${thumb}" alt="${escapeHTML(im.title)}" class="thumbnail" loading="lazy"
-             data-index="${i}" data-full="${full}">
-        <div class="image-overlay">${escapeHTML(im.desc)}</div>
-        <div class="image-caption">${escapeHTML(im.title)}</div>
-      </div>
-    `);
-  });
-}
+    <script>
+        // Gallery data (replace with your actual image URLs)
+        const galleryImages = [
+            { thumb: 'assets/images/gallery/thumb1.jpg', full: 'assets/images/gallery/full1.jpg', caption: 'Fantasy Warrior', alt: 'AI-generated fantasy warrior' },
+            { thumb: 'assets/images/gallery/thumb2.jpg', full: 'assets/images/gallery/full2.jpg', caption: 'Sci-Fi Portrait', alt: 'Futuristic character design' },
+            { thumb: 'assets/images/gallery/thumb3.jpg', full: 'assets/images/gallery/full3.jpg', caption: 'Abstract Art', alt: 'Digital abstract composition' },
+            { thumb: 'assets/images/gallery/thumb4.jpg', full: 'assets/images/gallery/full4.jpg', caption: 'Dragon Portrait', alt: 'Mythical dragon artwork' },
+            { thumb: 'assets/images/gallery/thumb5.jpg', full: 'assets/images/gallery/full5.jpg', caption: 'Space Scene', alt: 'Cosmic landscape' },
+            { thumb: 'assets/images/gallery/thumb6.jpg', full: 'assets/images/gallery/full6.jpg', caption: 'Character Study', alt: 'Detailed character portrait' },
+            // Add more images as needed - this structure supports easy expansion
+        ];
 
-/* ---- Lightbox ----------------------------------------------------------- */
-function initLightbox(){
-  const box=document.getElementById('lightbox');
-  const pic=document.getElementById('lightboxImage');
-  const cnt=document.getElementById('lightboxCounter');
-  let idx=0;
+        // Gallery functionality
+        let currentImageIndex = 0;
 
-  document.addEventListener('click',e=>{
-    if(e.target.classList.contains('thumbnail')){
-      idx=+e.target.dataset.index;
-      open(e.target.dataset.full,e.target.alt);
-    }
-  });
+        function populateGallery() {
+            const gallery = document.getElementById('galleryGrid');
+            const styleSelect = document.getElementById('style');
+            
+            galleryImages.forEach((image, index) => {
+                // Create gallery thumbnail
+                const img = document.createElement('img');
+                img.src = image.thumb;
+                img.alt = image.alt;
+                img.className = 'thumbnail';
+                img.tabIndex = 0;
+                img.setAttribute('draggable', 'false');
+                img.addEventListener('click', () => openModal(index));
+                img.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(index);
+                    }
+                });
+                gallery.appendChild(img);
 
-  document.getElementById('lightboxClose').onclick=close;
-  document.getElementById('lightboxPrev').onclick=()=>nav(-1);
-  document.getElementById('lightboxNext').onclick=()=>nav(1);
+                // Add to style dropdown
+                const option = document.createElement('option');
+                option.value = image.caption;
+                option.textContent = image.caption;
+                styleSelect.appendChild(option);
+            });
+        }
 
-  document.addEventListener('keydown',e=>{
-    if(box.style.display!=='flex')return;
-    if(e.key==='Escape')close();
-    if(e.key==='ArrowLeft')nav(-1);
-    if(e.key==='ArrowRight')nav(1);
-  });
+        // Modal/Lightbox functionality
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
 
-  box.addEventListener('click',e=>{if(e.target===box)close();});
+        function openModal(index) {
+            currentImageIndex = index;
+            modalImg.src = galleryImages[index].full;
+            modalImg.alt = galleryImages[index].alt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-  function open(src,alt){
-    pic.src=src;
-    pic.alt=alt;
-    cnt.textContent=`${idx+1} / ${images.length}`;
-    box.style.display='flex';
-    document.body.style.overflow='hidden';
-  }
-  function close(){
-    box.style.display='none';
-    pic.src='';
-    document.body.style.overflow='';
-  }
-  function nav(step){
-    idx=(idx+step+images.length)%images.length;
-    const thumb=document.querySelector(`.thumbnail[data-index="${idx}"]`);
-    if(thumb)open(thumb.dataset.full,thumb.alt);
-  }
-}
+        function closeModal() {
+            modal.classList.remove('active');
+            modalImg.src = '';
+            document.body.style.overflow = '';
+        }
 
-/* ---- Populate style <select> ------------------------------------------- */
-function populateStyleOptions(){
-  const sel=document.getElementById('style');
-  images.forEach(im=>{
-    sel.insertAdjacentHTML('beforeend',
-      `<option value="${escapeHTML(im.title)}">${escapeHTML(im.title)}</option>`);
-  });
-}
+        function showPrev() {
+            if (currentImageIndex > 0) {
+                openModal(currentImageIndex - 1);
+            }
+        }
 
-/* ---- Client-side form validation --------------------------------------- */
-document.getElementById('orderForm').addEventListener('submit',e=>{
-  const files=document.getElementById('files').files;
-  if(files.length>3){
-    alert('Please upload no more than 3 files.');
-    return e.preventDefault();
-  }
-  for(const f of files){
-    if(f.size>5*1024*1024){
-      alert('Files must be under 5 MB.');
-      return e.preventDefault();
-    }
-  }
-});
+        function showNext() {
+            if (currentImageIndex < galleryImages.length - 1) {
+                openModal(currentImageIndex + 1);
+            }
+        }
 
-/* ---- Init --------------------------------------------------------------- */
-document.addEventListener('DOMContentLoaded',()=>{
-  buildGallery();
-  initLightbox();
-  populateStyleOptions();
-});
-</script>
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            populateGallery();
+
+            // Modal controls
+            document.getElementById('closeModal').onclick = closeModal;
+            document.getElementById('prevBtn').onclick = showPrev;
+            document.getElementById('nextBtn').onclick = showNext;
+            document.getElementById('homeBtn').onclick = closeModal;
+
+            // Click outside modal to close
+            modal.addEventListener('click', e => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', e => {
+                if (!modal.classList.contains('active')) return;
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            });
+
+            // Email form submission
+            const emailForm = document.getElementById('emailForm');
+            const emailMsg = document.getElementById('emailMsg');
+            emailForm.onsubmit = async e => {
+                e.preventDefault();
+                const email = emailForm.email.value.trim();
+                if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+                    emailMsg.textContent = 'Please enter a valid email.';
+                    emailMsg.style.color = '#ff6b6b';
+                    return;
+                }
+                emailMsg.textContent = 'Thank you! You will receive updates about new artwork.';
+                emailMsg.style.color = 'var(--accent-primary)';
+                emailForm.reset();
+                // TODO: Integrate with backend/email service
+            };
+
+            // Custom order form
+            document.getElementById('orderForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Commission request submitted! You will receive a response within 24 hours.');
+                // TODO: Integrate with your actual form handler
+            });
+        });
+
+        // Image protection - prevent right-click and dragging
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.classList.contains('thumbnail') || e.target.classList.contains('modal-img')) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent image dragging
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
