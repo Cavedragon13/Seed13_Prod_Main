@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Galleries - Seed 13 Productions</title>
+    <meta name="description" content="Explore our collection of AI-generated character galleries featuring fantasy warriors, portraits, and specialized themed collections.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Modern Dark Theme */
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #1a1a2e;
+            --accent-bg: #16213e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #ff6b9d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Layout */
+            --radius: 8px;
+            --radius-large: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, var(--accent-bg) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-medium);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 3rem 0 5rem;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--secondary-bg) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 20%, var(--accent-bg) 0%, transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-secondary);
+        }
+
+        /* Gallery Grid */
+        .galleries-section {
+            padding: 2rem 0 5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-large);
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-medium);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-primary);
+        }
+
+        .gallery-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary-bg), var(--accent-bg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        }
+
+        .gallery-icon {
+            font-size: 3rem;
+            color: var(--accent-primary);
+            z-index: 2;
+            position: relative;
+        }
+
+        .gallery-card-content {
+            padding: 1.5rem;
+        }
+
+        .gallery-card h3 {
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .gallery-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .gallery-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .gallery-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .gallery-link:hover {
+            color: var(--accent-secondary);
+        }
+
+        .gallery-link::after {
+            content: '→';
+            transition: var(--transition-fast);
+        }
+
+        .gallery-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: #fff;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .badge.external {
+            background: var(--accent-secondary);
+        }
+
+        .badge.new {
+            background: #28a745;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                display: none; /* Mobile menu needed */
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-stats {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--accent-primary);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Seed 13 Productions</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Main Gallery</a></li>
+                <li><a href="#character-galleries">Character Galleries</a></li>
+                <li><a href="index.html#order">Custom Order</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> / Character Galleries
+                    </div>
+                    <h1>Character Galleries</h1>
+                    <p>Explore our diverse collection of AI-generated character artwork, from fantasy warriors to contemporary portraits, organized by theme and style.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galleries Section -->
+        <section id="character-galleries" class="galleries-section">
+            <div class="container">
+                <div class="gallery-grid">
+                    
+                    <!-- Dwarves Gallery -->
+                    <div class="gallery-card">
+                        <div class="gallery-card-image">
+                            <div class="gallery-icon">⚔️</div>
+                        </div>
+                        <div class="gallery-card-content">
+                            <h3>Dwarves Collection <span class="badge new">New</span></h3>
+                            <div class="gallery-stats">
+                                <div class="stat">
+                                    <span>📷</span>
+                                    <span>95 Images</span>
+                                </div>
+                                <div class="stat">
+                                    <span>🎬</span>
+                                    <span>6 Videos</span>
+                                </div>
+                                <div class="stat">
+                                    <span>🤖</span>
+                                    <span>AI Generated</span>
+                                </div>
+                            </div>
+                            <p>Extensive collection of fantasy dwarf warriors, kings, and battle scenes. Features armored characters, epic throne rooms, and dynamic battle poses.</p>
+                            <a href="dwarves.html" class="gallery-link">Explore Dwarves</a>
+                        </div>
+                    </div>
+
+                    <!-- Main Character Gallery -->
+                    <div class="gallery-card">
+                        <div class="gallery-card-image">
+                            <div class="gallery-icon">🎭</div>
+                        </div>
+                        <div class="gallery-card-content">
+                            <h3>Main Character Gallery</h3>
+                            <div class="gallery-stats">
+                                <div class="stat">
+                                    <span>📷</span>
+                                    <span>24 Images</span>
+                                </div>
+                                <div class="stat">
+                                    <span>🎨</span>
+                                    <span>Mixed Styles</span>
+                                </div>
+                                <div class="stat">
+                                    <span>✨</span>
+                                    <span>Professional</span>
+                                </div>
+                            </div>
+                            <p>Diverse collection featuring wizards, warriors, portraits, and character studies. Includes fantasy and contemporary character designs.</p>
+                            <a href="gallery.html" class="gallery-link">View Gallery</a>
+                        </div>
+                    </div>
+
+                    <!-- Woodsey Gallery -->
+                    <div class="gallery-card">
+                        <div class="gallery-card-image">
+                            <div class="gallery-icon">🌲</div>
+                        </div>
+                        <div class="gallery-card-content">
+                            <h3>Woodsey Gallery <span class="badge external">External</span></h3>
+                            <div class="gallery-stats">
+                                <div class="stat">
+                                    <span>📷</span>
+                                    <span>Multiple</span>
+                                </div>
+                                <div class="stat">
+                                    <span>🎬</span>
+                                    <span>Videos</span>
+                                </div>
+                                <div class="stat">
+                                    <span>🏆</span>
+                                    <span>Premium</span>
+                                </div>
+                            </div>
+                            <p>Professional character gallery featuring the Woodsey character universe. Includes action figures, concept art, and animated content.</p>
+                            <a href="https://github.com/Cavedragon13/woodsey-gallery" target="_blank" rel="noopener" class="gallery-link">Visit Woodsey Gallery</a>
+                        </div>
+                    </div>
+
+                    <!-- Sports Refs Gallery -->
+                    <div class="gallery-card">
+                        <div class="gallery-card-image">
+                            <div class="gallery-icon">🏆</div>
+                        </div>
+                        <div class="gallery-card-content">
+                            <h3>Sports Officials Collection <span class="badge external">External</span></h3>
+                            <div class="gallery-stats">
+                                <div class="stat">
+                                    <span>📷</span>
+                                    <span>6 Images</span>
+                                </div>
+                                <div class="stat">
+                                    <span>🎨</span>
+                                    <span>Pinup Style</span>
+                                </div>
+                                <div class="stat">
+                                    <span>⚽</span>
+                                    <span>Sports Theme</span>
+                                </div>
+                            </div>
+                            <p>Unique collection of sports officials and referees rendered in vintage pinup art style. Covers major sports including football, basketball, and soccer.</p>
+                            <a href="https://github.com/Cavedragon13/Pinup_Refs" target="_blank" rel="noopener" class="gallery-link">View Sports Collection</a>
+                        </div>
+                    </div>
+
+                    <!-- Tumbleweed Gulch -->
+                    <div class="gallery-card">
+                        <div class="gallery-card-image">
+                            <div class="gallery-icon">🤠</div>
+                        </div>
+                        <div class="gallery-card-content">
+                            <h3>Tumbleweed Gulch</h3>
+                            <div class="gallery-stats">
+                                <div class="stat">
+                                    <span>📷</span>
+                                    <span>50+ Images</span>
+                                </div>
+                                <div class="stat">
+                                    <span>🎨</span>
+                                    <span>Western Theme</span>
+                                </div>
+                                <div class="stat">
+                                    <span>📚</span>
+                                    <span>Story Driven</span>
+                                </div>
+                            </div>
+                            <p>Western-themed character portfolio featuring Dahlia Hex and Meanne Jean. Includes character art, action figures, and comic book covers.</p>
+                            <a href="/github-repos/tumbleweed-gulch/" class="gallery-link">Explore Western Characters</a>
+                        </div>
+                    </div>
+
+                    <!-- Jiya Blog Gallery -->
+                    <div class="gallery-card">
+                        <div class="gallery-card-image">
+                            <div class="gallery-icon">👤</div>
+                        </div>
+                        <div class="gallery-card-content">
+                            <h3>Jiya Portrait Collection</h3>
+                            <div class="gallery-stats">
+                                <div class="stat">
+                                    <span>📷</span>
+                                    <span>9 Images</span>
+                                </div>
+                                <div class="stat">
+                                    <span>💃</span>
+                                    <span>Lifestyle</span>
+                                </div>
+                                <div class="stat">
+                                    <span>📱</span>
+                                    <span>Contemporary</span>
+                                </div>
+                            </div>
+                            <p>Contemporary portrait collection featuring lifestyle and social media inspired character photography. Modern aesthetic with vibrant compositions.</p>
+                            <a href="/github-repos/jiya-blog/" class="gallery-link">View Portraits</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Seed 13 Productions. All rights reserved. | #nokings</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add gallery card hover animations
+        document.querySelectorAll('.gallery-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
