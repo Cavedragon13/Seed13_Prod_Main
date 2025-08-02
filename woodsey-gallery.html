@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woodsey Gallery - Seed 13 Productions</title>
+    <meta name="description" content="Professional character gallery featuring the Woodsey character universe. Includes action figures, concept art, and animated content.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Modern Dark Theme */
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #1a1a2e;
+            --accent-bg: #16213e;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #ff6b9d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Layout */
+            --radius: 8px;
+            --radius-large: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 30px rgba(0, 212, 255, 0.2);
+            
+            /* Gallery specific */
+            --thumb-size: 200px;
+            --thumb-height: 300px;
+            --gap: 1.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, var(--accent-bg) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-medium);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--secondary-bg) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 20%, var(--accent-bg) 0%, transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .gallery-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Gallery */
+        .gallery-section {
+            padding: 2rem 0 5rem;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--gap);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .thumbnail {
+            width: var(--thumb-size);
+            height: var(--thumb-height);
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            user-select: none;
+            pointer-events: auto;
+            transition: all var(--transition-medium);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            -webkit-user-drag: none;
+        }
+
+        .thumbnail:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-primary);
+        }
+
+        .thumbnail:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Coming Soon Overlay */
+        .coming-soon-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--accent-primary);
+            padding: 2rem;
+            border-radius: var(--radius-large);
+            text-align: center;
+            border: 2px solid var(--accent-primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .coming-soon-overlay h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .coming-soon-overlay p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .coming-soon-overlay .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                display: none; /* Mobile menu needed */
+            }
+            
+            .gallery-stats {
+                gap: 1rem;
+            }
+            
+            .gallery-grid {
+                gap: 0.7rem;
+            }
+
+            .thumbnail {
+                width: 150px;
+                height: 200px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--accent-primary);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Seed 13 Productions</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="character-galleries.html">Character Galleries</a></li>
+                <li><a href="gallery.html">Main Gallery</a></li>
+                <li><a href="index.html#order">Custom Order</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> / <a href="character-galleries.html">Character Galleries</a> / Woodsey Gallery
+                    </div>
+                    <h1>🌲 Woodsey Gallery</h1>
+                    <p>Professional character gallery featuring the Woodsey character universe. Includes action figures, concept art, and animated content.</p>
+                    
+                    <div class="gallery-stats">
+                        <div class="stat">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Images</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Videos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">Premium</div>
+                            <div class="stat-label">Quality</div>
+                        </div>
+                    </div>
+
+                    <!-- Coming Soon Overlay -->
+                    <div class="coming-soon-overlay">
+                        <div class="icon">🚧</div>
+                        <h2>Coming Soon</h2>
+                        <p>The Woodsey Gallery is currently being migrated to this new platform.</p>
+                        <p><strong>In the meantime:</strong><br>
+                        <a href="https://cavedragon13.github.io/woodsey-gallery/" target="_blank" style="color: var(--accent-primary);">Visit the current Woodsey Gallery →</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Seed 13 Productions. All rights reserved. | #nokings</p>
+        </div>
+    </footer>
+</body>
+</html>
