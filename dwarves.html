@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Dwarves Gallery - Seed 13 Productions</title>
+  <meta name="robots" content="index, follow">
+
+  <!-- Google font (lightweight single-style) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Page styles -->
+  <style>
+  :root{
+    --black:#000;--orange:#E65100;--red:#D32F2F;--magenta:#AB47BC;--lav:#EDE7F6;
+    --dgray:#212121;--fast:.2s ease;--med:.3s ease;--br:8px;--sh:0 2px 8px rgb(0 0 0/.1)
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Poppins,sans-serif;background:var(--lav);color:var(--black);line-height:1.6;overflow-x:hidden}
+  a{color:var(--orange);text-decoration:none;font-weight:600;transition:var(--fast)}
+  a:hover{color:var(--red)}
+  header{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;text-align:center}
+  nav{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap}
+  nav a{padding:.3rem 1rem;border-radius:var(--br)}
+  nav a:hover{background:var(--orange);color:#fff}
+  .container{max-width:1200px;margin:auto;padding:2rem 1rem}
+  /* Gallery */
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;margin-bottom:4rem}
+  .thumbnail-container{background:#fff;border-radius:var(--br);overflow:hidden;box-shadow:var(--sh);transition:var(--med);display:flex;flex-direction:column;min-height:200px;position:relative}
+  .thumbnail-container:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgb(0 0 0/.15)}
+  .thumbnail{width:100%;height:auto;max-height:300px;object-fit:contain;transition:var(--med);cursor:pointer}
+  .thumbnail-container:hover .thumbnail{transform:scale(1.05)}
+  .image-overlay{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);color:#fff;padding:1rem;font-size:.85rem;text-align:center;transform:translateY(100%);transition:transform var(--med);pointer-events:none}
+  .thumbnail-container:hover .image-overlay{transform:translateY(0)}
+  .image-caption{background:#fff;padding:.75rem;font-size:.9rem;font-weight:500;text-align:center}
+  /* Lightbox */
+  .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;justify-content:center;align-items:center}
+  .lightbox-btn{position:absolute;background:rgba(0,0,0,.5);color:#fff;border:none;font-size:1.8rem;padding:1rem;border-radius:50%;cursor:pointer}
+  #lightboxClose{top:20px;right:30px}
+  #lightboxPrev{left:20px;top:50%;transform:translateY(-50%)}
+  #lightboxNext{right:20px;top:50%;transform:translateY(-50%)}
+  #lightboxImage{max-width:80vw;max-height:80vh;border-radius:var(--br);pointer-events:none}
+  #lightboxCounter{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;padding:.5rem 1rem;border-radius:var(--br);font-size:.9rem}
+  /* Back to home link */
+  .back-link{display:inline-block;margin-bottom:2rem;padding:.5rem 1rem;background:var(--orange);color:#fff;border-radius:var(--br);transition:var(--fast)}
+  .back-link:hover{background:var(--red);color:#fff}
+  /* Gallery info */
+  .gallery-info{text-align:center;margin-bottom:2rem;padding:1.5rem;background:#fff;border-radius:var(--br);box-shadow:var(--sh)}
+  .gallery-stats{display:flex;justify-content:center;gap:2rem;margin-top:1rem;flex-wrap:wrap}
+  .stat{display:flex;flex-direction:column;align-items:center}
+  .stat-number{font-size:1.5rem;font-weight:600;color:var(--orange)}
+  .stat-label{font-size:.9rem;color:var(--dgray)}
+  /* Responsive tweaks */
+  @media(max-width:600px){
+    header h1{font-size:1.55rem}
+    .gallery-stats{gap:1rem}
+  }
+  </style>
+</head>
+
+<body>
+<header>
+  <a href="index.html" class="back-link">← Back to Main Site</a>
+  <img src="assets/images/logos/seed13-header.jpg" alt="Seed 13 Productions logo" style="max-width:300px;width:100%;margin-bottom:.5rem" onerror="this.style.display='none'">
+  <h1>Dwarves Gallery</h1>
+  <p style="font-weight:500;color:var(--magenta)">#noking</p>
+</header>
+
+<nav>
+  <a href="#gallery">Gallery</a>
+  <a href="gallery.html">Main Gallery</a>
+</nav>
+
+<div class="container">
+  <div class="gallery-info">
+    <h2>Fantasy Dwarves Collection</h2>
+    <p>An extensive collection of AI-generated fantasy dwarf character artwork, featuring warriors, kings, and epic scenes.</p>
+    <div class="gallery-stats">
+      <div class="stat">
+        <div class="stat-number" id="imageCount">95</div>
+        <div class="stat-label">Images</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Videos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">AI</div>
+        <div class="stat-label">Generated</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░░ Gallery ░░░ -->
+  <section id="gallery">
+    <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+  </section>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-btn" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lightbox-btn" id="lightboxPrev" aria-label="Previous">&#8249;</button>
+  <button class="lightbox-btn" id="lightboxNext" aria-label="Next">&#8250;</button>
+  <img id="lightboxImage" alt="Artwork">
+  <div id="lightboxCounter"></div>
+</div>
+
+<script>
+// Dwarves gallery data
+const dwarfImages = [
+  {fn:'dwarf_angry_bearded_dwarf_warrior_029',title:'Angry Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_angry_dwarf_character_art_020',title:'Angry Character Art',desc:'Battle-ready dwarf warrior'},
+  {fn:'dwarf_angry_dwarf_king_062',title:'Angry King',desc:'Dwarven royalty character art'},
+  {fn:'dwarf_angry_dwarf_warrior_054',title:'Angry Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_angry_dwarf_with_axe_036',title:'Angry With Axe',desc:'Battle-ready dwarf warrior'},
+  {fn:'dwarf_angry_dwarven_warrior_047',title:'Angry Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_angry_warrior_dwarf_039',title:'Angry Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_armored_warrior_037',title:'Armored Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_battle-ready_dwarven_warrior_057',title:'Battle-Ready Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_battle_ready_dwarf_064',title:'Battle Ready',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_bearded_dwarf_character_032',title:'Bearded Character',desc:'Traditional bearded dwarf'},
+  {fn:'dwarf_bearded_dwarf_leader_090',title:'Bearded Leader',desc:'Traditional bearded dwarf'},
+  {fn:'dwarf_bearded_dwarf_warrior_010',title:'Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_bearded_dwarf_warrior_025',title:'Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_bearded_dwarf_warrior_031',title:'Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_bearded_dwarf_warrior_059',title:'Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_bearded_dwarf_warrior_081',title:'Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_bearded_warrior_028',title:'Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_bearded_warrior_045',title:'Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_bearded_warrior_063',title:'Bearded Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarf_warrior_003',title:'Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarf_warrior_044',title:'Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarf_warrior_053',title:'Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarf_warrior_074',title:'Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarf_warrior_armor_009',title:'Warrior Armor',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarf_warrior_armor_051',title:'Warrior Armor',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarf_warrior_in_armor_087',title:'Warrior In Armor',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarf_warrior_sculpture_066',title:'Warrior Sculpture',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_armor_005',title:'Dwarven Armor',desc:'Armored dwarf character design'},
+  {fn:'dwarf_dwarven_king_024',title:'Dwarven King',desc:'Dwarven royalty character art'},
+  {fn:'dwarf_dwarven_king_in_armor_030',title:'Dwarven King In Armor',desc:'Dwarven royalty character art'},
+  {fn:'dwarf_dwarven_warrior_008',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_011',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_017',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_018',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_027',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_033',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_034',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_080',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_083',title:'Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_armor_013',title:'Dwarven Warrior Armor',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_character_design_071',title:'Dwarven Warrior Character Design',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_entrance_094',title:'Dwarven Warrior Entrance',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_statue_023',title:'Dwarven Warrior Statue',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_statue_068',title:'Dwarven Warrior Statue',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dwarven_warrior_with_axe_082',title:'Dwarven Warrior With Axe',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_dynamicdwarvenwarrior_091',title:'Dynamic Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_epic_dwarf_king_040',title:'Epic King',desc:'Dwarven royalty character art'},
+  {fn:'dwarf_epic_fantasy_dwarf_hall_052',title:'Epic Fantasy Hall',desc:'Epic fantasy dwarf scene'},
+  {fn:'dwarf_epic_fantasy_dwarf_warrior_046',title:'Epic Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_epic_fantasy_hall_060',title:'Epic Fantasy Hall',desc:'Epic fantasy dwarf scene'},
+  {fn:'dwarf_fantasy_armored_dwarf_022',title:'Fantasy Armored',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasy_armored_dwarf_058',title:'Fantasy Armored',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasy_armored_dwarf_095',title:'Fantasy Armored',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasy_bearded_dwarf_artwork_073',title:'Fantasy Bearded Artwork',desc:'Traditional bearded dwarf'},
+  {fn:'dwarf_fantasy_dwarf_035',title:'Fantasy',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_fantasy_dwarf_armor_007',title:'Fantasy Armor',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasy_dwarf_armor_021',title:'Fantasy Armor',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasy_dwarf_armor_089',title:'Fantasy Armor',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasy_dwarf_in_armor_069',title:'Fantasy In Armor',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasy_dwarf_king_048',title:'Fantasy King',desc:'Dwarven royalty character art'},
+  {fn:'dwarf_fantasy_dwarf_king_077',title:'Fantasy King',desc:'Dwarven royalty character art'},
+  {fn:'dwarf_fantasy_dwarf_king_084',title:'Fantasy King',desc:'Dwarven royalty character art'},
+  {fn:'dwarf_fantasy_dwarf_king_artwork_002',title:'Fantasy King Artwork',desc:'Dwarven royalty character art'},
+  {fn:'dwarf_fantasy_dwarf_statue_014',title:'Fantasy Statue',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_fantasy_dwarf_throne_room_006',title:'Fantasy Throne Room',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_fantasy_dwarf_warrior_012',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_016',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_019',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_041',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_043',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_056',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_065',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_075',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_078',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_088',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_warrior_092',title:'Fantasy Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarf_with_hammer_004',title:'Fantasy With Hammer',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_fantasy_dwarfs_battle_086',title:'Fantasy Dwarfs Battle',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_fantasy_dwarven_warrior_079',title:'Fantasy Dwarven Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_fantasy_dwarves_armor_015',title:'Fantasy Dwarves Armor',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasy_dwarves_scene_061',title:'Fantasy Dwarves Scene',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_fantasydwarfarmor_085',title:'Fantasy Dwarf Armor',desc:'Armored dwarf character design'},
+  {fn:'dwarf_fantasydwarfcloak_072',title:'Fantasy Dwarf Cloak',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_fire_dwarf_warrior_038',title:'Fire Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_giant_dwarf_in_armor_070',title:'Giant In Armor',desc:'Armored dwarf character design'},
+  {fn:'dwarf_giant_dwarven_guardian_050',title:'Giant Dwarven Guardian',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_golden_dwarf_warrior_055',title:'Golden Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_grim_fantasy_dwarf_049',title:'Grim Fantasy',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_orc_warrior_026',title:'Orc Warrior',desc:'Fantasy dwarf warrior character'},
+  {fn:'dwarf_stone_titan_093',title:'Stone Titan',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_throne_room_dwarf_067',title:'Throne Room',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_viking_dwarf_001',title:'Viking',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_viking_dwarf_armor_076',title:'Viking Armor',desc:'Fantasy dwarf artwork'},
+  {fn:'dwarf_warrior_dwarf_042',title:'Warrior',desc:'Fantasy dwarf warrior character'}
+];
+
+// Gallery functionality
+let currentImageIndex = 0;
+const basePath = 'assets/images/dwarves/';
+
+function populateGallery() {
+  const gallery = document.getElementById('galleryGrid');
+  
+  dwarfImages.forEach((image, index) => {
+    const container = document.createElement('div');
+    container.className = 'thumbnail-container';
+    container.innerHTML = `
+      <img src="${basePath}thumbs/${image.fn}-thumb.png" alt="${image.title}" class="thumbnail" data-index="${index}">
+      <div class="image-overlay">${image.desc}</div>
+      <div class="image-caption">${image.title}</div>
+    `;
+    gallery.appendChild(container);
+  });
+  
+  // Update image count
+  document.getElementById('imageCount').textContent = dwarfImages.length;
+}
+
+// Lightbox functionality
+function openLightbox(index) {
+  currentImageIndex = index;
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const counter = document.getElementById('lightboxCounter');
+  
+  lightboxImage.src = `${basePath}full/${dwarfImages[index].fn}.png`;
+  lightboxImage.alt = dwarfImages[index].title;
+  counter.textContent = `${index + 1} / ${dwarfImages.length}`;
+  
+  lightbox.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function nextImage() {
+  currentImageIndex = (currentImageIndex + 1) % dwarfImages.length;
+  openLightbox(currentImageIndex);
+}
+
+function prevImage() {
+  currentImageIndex = (currentImageIndex - 1 + dwarfImages.length) % dwarfImages.length;
+  openLightbox(currentImageIndex);
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  populateGallery();
+
+  document.getElementById('galleryGrid').addEventListener('click', function(e) {
+    if (e.target.classList.contains('thumbnail')) {
+      const index = parseInt(e.target.dataset.index);
+      openLightbox(index);
+    }
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxNext').addEventListener('click', nextImage);
+  document.getElementById('lightboxPrev').addEventListener('click', prevImage);
+
+  document.addEventListener('keydown', function(e) {
+    if (document.getElementById('lightbox').style.display === 'flex') {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    }
+  });
+});
+</script>
+</body>
+</html>
