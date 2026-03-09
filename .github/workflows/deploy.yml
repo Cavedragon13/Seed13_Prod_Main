@@ -35,13 +35,13 @@ jobs:
           ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la public_html/ || echo 'public_html not found'"
           ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la domains/seed13productions.com/public_html/ || echo 'domains path not found'"
           
-          # Force remove old index.html and deploy fresh
-          ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "rm -f domains/seed13productions.com/public_html/index.html"
-          
-          # Deploy using rsync with SSH (try domains path)
-          rsync -avz --delete \
+          # Deploy using rsync — NO --delete flag intentionally.
+          # Images/videos are uploaded directly to Hostinger and must not be wiped.
+          # Only add/update files from the repo.
+          rsync -avz \
             -e "ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no" \
-            --exclude='.git*' --exclude='README.md' \
+            --exclude='.git*' --exclude='README.md' --exclude='CLAUDE.md' \
+            --exclude='test-deploy.html' \
             ./ $SSH_USER@$SSH_HOST:domains/seed13productions.com/public_html/
           
           # Clean up key file

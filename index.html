@@ -3,910 +3,926 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cavedragon - AI Artist | Seed 13 Productions</title>
-    <meta name="description" content="Professional AI-generated art by Cavedragon. Fantasy, sci-fi, portraits, and experimental digital art. Custom commissions available. Interactive games and creative tools.">
-    
-    <!-- Google Fonts -->
+    <title>Seed 13 Productions | Cavedragon — AI Artist & Creative Developer</title>
+    <meta name="description" content="AI-generated fantasy art, character galleries, interactive experiences, and creative tools by Cavedragon. Seed 13 Productions.">
+    <meta property="og:title" content="Seed 13 Productions | Cavedragon">
+    <meta property="og:description" content="Fantasy art, character galleries, and interactive experiments from the forge.">
+    <meta property="og:type" content="website">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            /* Modern Dark Theme */
-            --primary-bg: #0f0f0f;
-            --secondary-bg: #1a1a2e;
-            --accent-bg: #16213e;
-            --accent-primary: #00d4ff;
-            --accent-secondary: #ff6b9d;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-muted: #666;
-            
-            /* Transitions */
-            --transition-fast: 0.2s ease;
-            --transition-medium: 0.3s ease;
-            --transition-slow: 0.5s ease;
-            
-            /* Layout */
-            --radius: 8px;
-            --radius-large: 12px;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 8px 30px rgba(0, 212, 255, 0.2);
-            
-            /* Gallery specific */
-            --thumb-size: 200px;
-            --thumb-height: 300px;
-            --gap: 1.5rem;
+            --forge-black:   #0B0906;
+            --ember-dark:    #13100C;
+            --ash-mid:       #1E1812;
+            --forge-border:  #3A2E1E;
+            --ember-dim:     #5C3D1A;
+            --ember:         #C8571A;
+            --ember-bright:  #E06820;
+            --gold:          #C9920F;
+            --gold-light:    #E0B030;
+            --parchment:     #EDE0C8;
+            --aged:          #A89070;
+            --muted:         #6B5840;
+            --jade:          #1A3A2A;
+            --jade-light:    #2A5C3F;
+            --glow:          rgba(200, 87, 26, 0.18);
+            --radius:        4px;
+            --radius-lg:     8px;
+            --transition:    0.25s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, var(--accent-bg) 100%);
-            color: var(--text-primary);
-            line-height: 1.6;
+            background: var(--forge-black);
+            color: var(--parchment);
+            font-family: 'Lora', Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        .container {
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; letter-spacing: 0.03em; }
+        h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 900; }
+        h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; }
+        h3 { font-size: 1rem; font-weight: 600; }
+        p  { color: var(--aged); }
+
+        a { color: var(--ember); text-decoration: none; transition: color var(--transition); }
+        a:hover { color: var(--ember-bright); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(11, 9, 6, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--forge-border);
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 24px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: var(--ember);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .logo span { color: var(--gold); }
+        .logo:hover { color: var(--ember-bright); }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--aged);
+        }
+        .nav-links a:hover { color: var(--parchment); }
+        .nav-cta {
+            padding: 0.45rem 1.1rem;
+            border: 1px solid var(--ember);
+            color: var(--ember) !important;
+            border-radius: var(--radius);
+            transition: background var(--transition), color var(--transition) !important;
+        }
+        .nav-cta:hover { background: var(--ember); color: var(--forge-black) !important; }
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--aged);
+            margin: 5px 0;
         }
 
-        /* Header */
-        header {
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            position: fixed;
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        .hero-text {
+            padding: 6rem 3rem 4rem 24px;
+            max-width: 580px;
+        }
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--ember);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px; height: 1px;
+            background: var(--ember);
+        }
+        .hero h1 { color: var(--parchment); margin-bottom: 1.5rem; line-height: 1.1; }
+        .hero h1 em { font-style: normal; color: var(--ember); }
+        .hero-desc {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--aged);
+            margin-bottom: 2.5rem;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            background: var(--ember);
+            color: var(--forge-black);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: var(--radius);
+            transition: background var(--transition), transform var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover { background: var(--ember-bright); color: var(--forge-black); transform: translateY(-2px); }
+        .btn-secondary {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            border: 1px solid var(--forge-border);
+            color: var(--aged);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: var(--radius);
+            transition: border-color var(--transition), color var(--transition), transform var(--transition);
+        }
+        .btn-secondary:hover { border-color: var(--aged); color: var(--parchment); transform: translateY(-2px); }
+        .hero-stats {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--forge-border);
+            display: flex;
+            gap: 3rem;
+        }
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--ember);
+            display: block;
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* Hero mosaic */
+        .hero-mosaic {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .hero-mosaic::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 120px;
+            background: linear-gradient(to right, var(--forge-black), transparent);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .mosaic-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            gap: 3px;
+            height: 100%;
+            padding-top: 64px;
+        }
+        .mosaic-cell {
+            overflow: hidden;
+            background: var(--ash-mid);
+        }
+        .mosaic-cell:first-child { grid-row: span 2; }
+        .mosaic-cell img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            opacity: 0.65;
+            filter: sepia(0.25) saturate(0.8);
+            transition: opacity 0.4s;
+        }
+        .mosaic-cell:hover img { opacity: 0.85; }
+        .mosaic-placeholder {
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            background: var(--ash-mid);
+            color: var(--forge-border);
+        }
+
+        /* ─── DIVIDER ─── */
+        .forge-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--forge-border), transparent);
+        }
+
+        /* ─── SECTION ─── */
+        .section { padding: 6rem 0; }
+        .section-header { margin-bottom: 3.5rem; }
+        .section-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--ember);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .section-eyebrow::before {
+            content: '';
+            display: block;
+            width: 20px; height: 1px;
+            background: var(--ember);
+        }
+        .section-header h2 { color: var(--parchment); margin-bottom: 0.6rem; }
+        .section-header p { max-width: 520px; }
+
+        /* ─── GALLERIES ─── */
+        #galleries { background: var(--ember-dark); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .gallery-card {
+            background: var(--ash-mid);
+            border: 1px solid var(--forge-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+        }
+        .gallery-card:hover {
+            border-color: var(--ember-dim);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px var(--glow);
+        }
+        .gallery-card a { display: block; text-decoration: none; }
+        .gallery-card.coming-soon { opacity: 0.55; }
+        .gallery-card.coming-soon:hover { transform: none; box-shadow: none; border-color: var(--forge-border); }
+
+        .gallery-card.featured { grid-column: span 2; }
+
+        .gallery-thumb {
+            position: relative;
+            overflow: hidden;
+            background: var(--forge-border);
+        }
+        .gallery-thumb { aspect-ratio: 3/4; }
+        .gallery-card.featured .gallery-thumb { aspect-ratio: 16/9; }
+
+        .gallery-thumb img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            opacity: 0.82;
+            filter: sepia(0.15) saturate(0.88);
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .gallery-card:not(.coming-soon):hover .gallery-thumb img { opacity: 1; transform: scale(1.04); }
+
+        .thumb-placeholder {
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--forge-border), var(--ash-mid));
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 10px; right: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 7px;
+            border-radius: 2px;
+            z-index: 2;
+        }
+        .badge-live { background: var(--ember); color: var(--forge-black); }
+        .badge-soon { background: var(--jade); color: var(--parchment); border: 1px solid var(--jade-light); }
+        .badge-new  { background: var(--gold); color: var(--forge-black); }
+
+        .gallery-info { padding: 1.2rem 1.2rem 1.4rem; }
+        .gallery-info h3 { color: var(--parchment); margin-bottom: 0.4rem; }
+        .gallery-info p  { font-size: 0.84rem; line-height: 1.55; margin-bottom: 0.75rem; color: var(--muted); }
+        .gallery-meta {
+            display: flex;
+            gap: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ember-dim);
+        }
+
+        /* ─── PROJECTS ─── */
+        #projects { background: var(--forge-black); }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+        .project-card {
+            background: var(--ash-mid);
+            border: 1px solid var(--forge-border);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem 2rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .project-card:hover {
+            border-color: var(--ember-dim);
+            box-shadow: 0 8px 30px var(--glow);
+        }
+        .project-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+        .project-body h3 { color: var(--parchment); margin-bottom: 0.35rem; }
+        .project-body p  { font-size: 0.86rem; line-height: 1.6; margin-bottom: 0.9rem; }
+        .project-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ember);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .project-link:hover { gap: 0.7rem; color: var(--ember-bright); }
+        .project-link::after { content: '→'; }
+
+        /* ─── ORDER ─── */
+        #order {
+            background: var(--ember-dark);
+            border-top: 1px solid var(--forge-border);
+            border-bottom: 1px solid var(--forge-border);
+        }
+        .order-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .order-intro h2 { margin-bottom: 1rem; }
+        .order-intro > p { margin-bottom: 0.75rem; }
+        .forge-list {
+            list-style: none;
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .forge-list li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.84rem;
+            color: var(--aged);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .forge-list li::before { content: '◆'; color: var(--ember); font-size: 0.4rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--forge-black);
+            border: 1px solid var(--forge-border);
+            border-radius: var(--radius);
+            padding: 0.7rem 0.9rem;
+            color: var(--parchment);
+            font-family: 'Lora', serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color var(--transition);
+            -webkit-appearance: none;
         }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: var(--ember); }
+        .form-group textarea { min-height: 96px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
-        nav {
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--forge-black);
+            border-top: 1px solid var(--forge-border);
+            padding: 3rem 0 2rem;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .footer-brand .logo { font-size: 1rem; display: inline-block; margin-bottom: 0.5rem; }
+        .footer-brand p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: var(--muted);
+            max-width: 260px;
+        }
+        .footer-links { display: flex; gap: 4rem; }
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.9rem;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.5rem; }
+        .footer-col a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            color: var(--aged);
+        }
+        .footer-col a:hover { color: var(--parchment); }
+        .footer-bottom {
+            border-top: 1px solid var(--forge-border);
+            padding-top: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-            text-decoration: none;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .footer-bottom p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+        .nokings {
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            color: var(--ember-dim);
+            text-transform: uppercase;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
+        /* ─── REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
         }
+        .reveal.visible { opacity: 1; transform: none; }
 
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: var(--transition-medium);
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius);
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-card.featured { grid-column: span 2; }
         }
-
-        .nav-links a:hover {
-            color: var(--accent-primary);
-            background: rgba(0, 212, 255, 0.1);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: 
-                radial-gradient(circle at 20% 80%, var(--secondary-bg) 0%, transparent 50%), 
-                radial-gradient(circle at 80% 20%, var(--accent-bg) 0%, transparent 50%);
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 3rem;
-            align-items: center;
-            z-index: 2;
-            position: relative;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
-
-        .hero-text h2 {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all var(--transition-medium);
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--accent-primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Project Showcase */
-        .projects {
-            padding: 5rem 0;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .projects h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-large);
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition-medium);
-            backdrop-filter: blur(10px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-primary);
-        }
-
-        .project-card h3 {
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .project-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-link {
-            color: var(--accent-primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-fast);
-        }
-
-        .project-link:hover {
-            color: var(--accent-secondary);
-        }
-
-        /* Gallery Section */
-        .gallery {
-            padding: 5rem 0;
-        }
-
-        .gallery h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        .gallery-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: var(--gap);
-            max-width: 1000px;
-            margin: 0 auto 4rem auto;
-        }
-
-        .thumbnail {
-            width: var(--thumb-size);
-            height: var(--thumb-height);
-            object-fit: cover;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            user-select: none;
-            pointer-events: auto;
-            transition: all var(--transition-medium);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            -webkit-user-drag: none;
-        }
-
-        .thumbnail:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-primary);
-        }
-
-        .thumbnail:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.3);
-        }
-
-        /* Modal/Lightbox */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; 
-            top: 0; 
-            right: 0; 
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: all var(--transition-medium);
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-img {
-            max-height: 80vh;
-            max-width: 90vw;
-            border-radius: var(--radius-large);
-            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.5);
-            pointer-events: none;
-            -webkit-user-drag: none;
-            user-select: none;
-        }
-
-        .modal-nav {
-            margin-top: 1.5rem;
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .modal-btn {
-            background: var(--accent-primary);
-            color: #fff;
-            border: none;
-            border-radius: var(--radius);
-            padding: 0.7em 1.4em;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            font-weight: 500;
-        }
-
-        .modal-btn:hover {
-            background: var(--accent-secondary);
-            transform: translateY(-2px);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
-            font-size: 2rem;
-            color: var(--text-primary);
-            cursor: pointer;
-            z-index: 2100;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition-fast);
-        }
-
-        .close-btn:hover {
-            background: var(--accent-primary);
-            color: white;
-        }
-
-        /* E-commerce Section */
-        .ecommerce {
-            padding: 5rem 0;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .ecommerce h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        .commerce-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .email-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2rem 0;
-            gap: 1rem;
-        }
-
-        .email-form label {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .email-form input[type="email"] {
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius);
-            font-size: 1rem;
-            width: 280px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            transition: var(--transition-fast);
-        }
-
-        .email-form input[type="email"]:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-        }
-
-        .stripe-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .stripe-link {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 1rem 2rem;
-            border-radius: var(--radius);
-            transition: all var(--transition-medium);
-            display: inline-block;
-        }
-
-        .stripe-link:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .email-msg {
-            font-size: 0.95em;
-            color: var(--accent-primary);
-            margin-top: 1rem;
-        }
-
-        /* Order Form */
-        .order {
-            padding: 5rem 0;
-        }
-
-        .order h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        .order-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: var(--radius-large);
-            box-shadow: var(--shadow);
-            display: grid;
-            gap: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .order-form label {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .order-form input, 
-        .order-form select, 
-        .order-form textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius);
-            font-family: inherit;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            transition: var(--transition-fast);
-        }
-
-        .order-form input:focus, 
-        .order-form select:focus, 
-        .order-form textarea:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-        }
-
-        .order-form textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .order-form button[type="submit"] {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: white;
-            border: none;
-            padding: 0.75rem 1.25rem;
-            font-size: 1rem;
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: var(--transition-medium);
-            font-weight: 600;
-        }
-
-        .order-form button[type="submit"]:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: var(--text-secondary);
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none; /* Mobile menu needed */
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                justify-content: center;
-            }
-
-            .gallery-grid {
-                gap: 0.7rem;
-            }
-
-            .thumbnail {
-                width: 150px;
-                height: 200px;
-            }
-
-            .modal-img {
-                max-width: 98vw;
-                max-height: 60vh;
-            }
-
-            .stripe-links {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
                 flex-direction: column;
-                align-items: center;
+                gap: 0;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: rgba(11,9,6,0.98);
+                border-bottom: 1px solid var(--forge-border);
+                padding: 0.5rem 0;
             }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Selection styling */
-        ::selection {
-            background: var(--accent-primary);
-            color: white;
+            .nav-links.open li { padding: 0.7rem 24px; }
+            .nav-hamburger { display: block; }
+            .hero { grid-template-columns: 1fr; min-height: auto; }
+            .hero-text { padding: 5rem 24px 2rem; max-width: 100%; }
+            .hero-mosaic { display: none; }
+            .hero-stats { gap: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-card.featured { grid-column: span 1; }
+            .gallery-card.featured .gallery-thumb { aspect-ratio: 16/9; }
+            .gallery-thumb { aspect-ratio: 16/9; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .order-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-inner { flex-direction: column; }
+            .footer-links { gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
         }
     </style>
 </head>
-
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <a href="#home" class="logo">Seed 13 Productions</a>
-            <ul class="nav-links">
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#shop">Shop</a></li>
-                <li><a href="#order">Custom Order</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Cavedragon</h1>
-                    <h2>AI Artist & Creative Developer</h2>
-                    <p>Professional AI-generated art, interactive experiences, and creative tools. From fantasy portraits to experimental digital art, bringing imagination to life through technology.</p>
-                    <div class="cta-buttons">
-                        <a href="gallery.html" class="btn btn-primary">View Gallery</a>
-                        <a href="#projects" class="btn btn-secondary">Explore Projects</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <!-- Space for hero image if needed -->
-                </div>
-            </div>
+<!-- ─── HEADER ─── -->
+<header>
+    <nav>
+        <a href="/" class="logo">Seed <span>13</span> Productions</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#galleries">Galleries</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="field-guide/">Field Guide</a></li>
+            <li><a href="#order" class="nav-cta">Custom Order</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+    <div class="hero-text">
+        <div class="hero-eyebrow">AI Artist &amp; Creative Developer</div>
+        <h1>Built in the <em>forge</em>,<br>not the cloud.</h1>
+        <p class="hero-desc">
+            Cavedragon is a Gen X artist working at the intersection of AI tools,
+            fantasy worldbuilding, and interactive storytelling. Character galleries,
+            playable experiments, and things that probably shouldn&apos;t exist — all
+            from the same workshop.
+        </p>
+        <div class="hero-actions">
+            <a href="#galleries" class="btn-primary">Enter the Galleries</a>
+            <a href="#projects" class="btn-secondary">See Projects</a>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>Interactive Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>🎮 Survival Games</h3>
-                    <p>Test your survival instincts with expert-validated scenarios from NASA, Coast Guard, and other professional organizations.</p>
-                    <a href="/games/survival/" class="project-link">Play Games →</a>
-                </div>
-                <div class="project-card">
-                    <h3>🖼️ Character Galleries</h3>
-                    <p>Explore collections of AI-generated characters, from fantasy heroes to sci-fi adventurers.</p>
-                    <a href="character-galleries.html" class="project-link">Browse Galleries →</a>
-                </div>
-                <div class="project-card">
-                    <h3>🛠️ Creative Tools</h3>
-                    <p>Utility applications for 3D model processing, file organization, and creative workflows.</p>
-                    <a href="/tools/" class="project-link">View Tools →</a>
-                </div>
-                <div class="project-card">
-                    <h3>📈 Data Visualizations</h3>
-                    <p>Interactive dashboards and real-time data displays, including cryptocurrency trackers.</p>
-                    <a href="/data/" class="project-link">See Visualizations →</a>
-                </div>
+        <div class="hero-stats">
+            <div>
+                <span class="stat-number">100+</span>
+                <div class="stat-label">Dwarves</div>
             </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2>Art Gallery</h2>
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery items will be populated by JavaScript -->
+            <div>
+                <span class="stat-number">5</span>
+                <div class="stat-label">Galleries</div>
             </div>
-        </div>
-    </section>
-
-    <!-- Modal/Lightbox -->
-    <div class="modal" id="modal">
-        <button class="close-btn" id="closeModal" aria-label="Close">&times;</button>
-        <img class="modal-img" id="modalImg" src="" alt="Artwork" draggable="false">
-        <div class="modal-nav">
-            <button class="modal-btn" id="prevBtn">Previous</button>
-            <button class="modal-btn" id="nextBtn">Next</button>
-            <button class="modal-btn" id="homeBtn">Gallery</button>
+            <div>
+                <span class="stat-number">#nokings</span>
+                <div class="stat-label">Always</div>
+            </div>
         </div>
     </div>
 
-    <!-- E-commerce Section -->
-    <section id="shop" class="ecommerce">
-        <div class="container">
-            <h2>Shop & Support</h2>
-            <div class="commerce-container">
-                <form class="email-form" id="emailForm" autocomplete="off">
-                    <label for="email">Join the mailing list for updates:</label>
-                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                    <div id="emailMsg" class="email-msg"></div>
-                </form>
+    <div class="hero-mosaic">
+        <div class="mosaic-grid">
+            <div class="mosaic-cell">
+                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_01-thumb.png"
+                     alt="Dwarf warrior" loading="lazy"
+                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#9876;</div>'">
+            </div>
+            <div class="mosaic-cell">
+                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_02-thumb.png"
+                     alt="Dwarf warrior 2" loading="lazy"
+                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#129302;</div>'">
+            </div>
+            <div class="mosaic-cell">
+                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_King_01-thumb.png"
+                     alt="Dwarf King" loading="lazy"
+                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#128081;</div>'">
+            </div>
+            <div class="mosaic-cell">
+                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_03-thumb.png"
+                     alt="Dwarf warrior 3" loading="lazy"
+                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#128293;</div>'">
+            </div>
+            <div class="mosaic-cell">
+                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_04-thumb.png"
+                     alt="Dwarf warrior 4" loading="lazy"
+                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#128737;</div>'">
+            </div>
+            <div class="mosaic-cell">
+                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_statue_01-thumb.png"
+                     alt="Dwarf statue" loading="lazy"
+                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#128255;</div>'">
+            </div>
+        </div>
+    </div>
+</section>
 
-                <div class="stripe-links">
-                    <a class="stripe-link" href="https://buy.stripe.com/bJe9ATg0R7je5dg1Yqawo00" target="_blank" rel="noopener">Order Print</a>
-                    <a class="stripe-link" href="https://buy.stripe.com/bJe9ATg0R7je5dg1Yqawo00" target="_blank" rel="noopener">Support Artist</a>
+<div class="forge-divider"></div>
+
+<!-- ─── GALLERIES ─── -->
+<section class="section" id="galleries">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-eyebrow">Character Galleries</div>
+            <h2>The Collections</h2>
+            <p>Original characters, built world by world.</p>
+        </div>
+
+        <div class="gallery-grid">
+
+            <!-- FEATURED: Dwarves -->
+            <div class="gallery-card featured reveal">
+                <a href="dwarves.html">
+                    <div class="gallery-thumb">
+                        <span class="gallery-badge badge-live">Live</span>
+                        <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_01-thumb.png"
+                             alt="Dwarves Collection" loading="lazy"
+                             onerror="this.outerHTML='<div class=\'thumb-placeholder\'>&#9876;</div>'">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Dwarves Collection</h3>
+                        <p>100 dwarf warriors, kings, smiths, and veterans. Fantasy character studies across every archetype the mountain holds.</p>
+                        <div class="gallery-meta">
+                            <span>95 Images</span>
+                            <span>8 Videos</span>
+                            <span>Fantasy</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Urban Sage -->
+            <div class="gallery-card reveal">
+                <a href="urban-sage/urban-sage.html">
+                    <div class="gallery-thumb">
+                        <span class="gallery-badge badge-new">New</span>
+                        <div class="thumb-placeholder">&#127748;</div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Urban Sage</h3>
+                        <p>Cyberpunk character concepts with before-and-after transformation work.</p>
+                        <div class="gallery-meta">
+                            <span>20+ Images</span>
+                            <span>Cyberpunk</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Workshop Wanderer -->
+            <div class="gallery-card reveal">
+                <a href="workshop-wanderer/workshop-wanderer.html">
+                    <div class="gallery-thumb">
+                        <span class="gallery-badge badge-new">New</span>
+                        <div class="thumb-placeholder">&#9881;</div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Workshop Wanderer</h3>
+                        <p>Steampunk inventors and mechanical characters, step-by-step from sketch to final render.</p>
+                        <div class="gallery-meta">
+                            <span>15+ Images</span>
+                            <span>Steampunk</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Woodsey -->
+            <div class="gallery-card coming-soon reveal">
+                <a href="woodsey-gallery.html">
+                    <div class="gallery-thumb">
+                        <span class="gallery-badge badge-soon">Migrating</span>
+                        <div class="thumb-placeholder">&#127794;</div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Woodsey</h3>
+                        <p>The Woodsey character universe — action figures, concept art, and animated content.</p>
+                        <div class="gallery-meta">
+                            <span>12 Images</span>
+                            <span>2 Videos</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Sports Officials -->
+            <div class="gallery-card coming-soon reveal">
+                <a href="sports-officials.html">
+                    <div class="gallery-thumb">
+                        <span class="gallery-badge badge-soon">Soon</span>
+                        <div class="thumb-placeholder">&#128226;</div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Sports Officials</h3>
+                        <p>Vintage pinup portraits of referees and officials. Six images, built with craft.</p>
+                        <div class="gallery-meta">
+                            <span>6 Images</span>
+                            <span>Pinup</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="forge-divider"></div>
+
+<!-- ─── PROJECTS ─── -->
+<section class="section" id="projects">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-eyebrow">Interactive Work</div>
+            <h2>Projects &amp; Experiments</h2>
+            <p>Things that run, not just things that hang on walls.</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <div class="project-icon">&#127925;</div>
+                <div class="project-body">
+                    <h3>Field Guide to Human Music</h3>
+                    <p>60 essential songs across 20 genres, curated to explain human music to extraterrestrial observers. Voting system, Gen X perspective.</p>
+                    <a href="field-guide/" class="project-link">Explore the Guide</a>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-icon">&#127918;</div>
+                <div class="project-body">
+                    <h3>Survival Games</h3>
+                    <p>Browser-based survival decision games. Text-driven scenarios, branching consequences, and the occasional dragon.</p>
+                    <a href="/games/survival/" class="project-link">Play Now</a>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-icon">&#127943;</div>
+                <div class="project-body">
+                    <h3>Horse Racing Simulator</h3>
+                    <p>Win, Place, and Show betting with AI opponents. Parlay tickets, persistent player progression, track conditions.</p>
+                    <a href="https://github.com/Cavedragon13/horse-racing-v2" class="project-link">View Project</a>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-icon">&#128202;</div>
+                <div class="project-body">
+                    <h3>CryptoFlux Dashboard</h3>
+                    <p>Live cryptocurrency price tracking, portfolio management, and alert system with AdSense-integrated layout.</p>
+                    <a href="https://github.com/Cavedragon13/cryptoflux-pro" class="project-link">View Project</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Custom Order Section -->
-    <section id="order" class="order">
-        <div class="container">
-            <h2>Custom Commission</h2>
-            <form class="order-form" id="orderForm" action="submit-form.php" method="post" enctype="multipart/form-data" novalidate>
-                <div>
-                    <label for="name">Name *</label>
-                    <input id="name" name="name" type="text" required>
+<div class="forge-divider"></div>
+
+<!-- ─── ORDER ─── -->
+<section class="section" id="order">
+    <div class="container">
+        <div class="order-grid">
+            <div class="order-intro reveal">
+                <div class="section-eyebrow">Commissions</div>
+                <h2>Custom Order</h2>
+                <p>Commission original AI-generated artwork. Character portraits, fantasy scenes, before-and-after transformations.</p>
+                <p>Current turnaround: 1&#8211;3 days depending on complexity.</p>
+                <ul class="forge-list">
+                    <li>Character portraits &#8212; fantasy, sci-fi, historical</li>
+                    <li>Before / after transformation series</li>
+                    <li>Multi-image character studies</li>
+                    <li>Concept art and worldbuilding visuals</li>
+                    <li>Print-ready files included</li>
+                </ul>
+            </div>
+
+            <form class="reveal" action="submit-form.php" method="POST" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
                 </div>
-
-                <div>
-                    <label for="orderEmail">Email *</label>
-                    <input id="orderEmail" name="email" type="email" required>
-                </div>
-
-                <div>
-                    <label for="style">Choose a style *</label>
-                    <select id="style" name="style" required>
-                        <option value="">-- select --</option>
+                <div class="form-group">
+                    <label for="style">Style</label>
+                    <select id="style" name="style">
+                        <option value="">Select a style...</option>
+                        <option value="fantasy">Fantasy / Medieval</option>
+                        <option value="scifi">Sci-Fi / Cyberpunk</option>
+                        <option value="steampunk">Steampunk</option>
+                        <option value="pinup">Vintage Pinup</option>
+                        <option value="portrait">Character Portrait</option>
+                        <option value="before-after">Before / After Transformation</option>
+                        <option value="other">Other (describe below)</option>
                     </select>
                 </div>
-
-                <div>
-                    <label for="notes">Notes / Special requests</label>
-                    <textarea id="notes" name="notes" placeholder="Describe your vision, specific requirements, or any questions..."></textarea>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description"
+                        placeholder="Describe the character, scene, mood, colors, or references..."></textarea>
                 </div>
-
-                <div>
-                    <label for="files">Reference images (up to 3 files, max 5MB each)</label>
-                    <input id="files" name="files[]" type="file" multiple accept="image/*">
+                <div class="form-group">
+                    <label for="reference">Reference Image (optional)</label>
+                    <input type="file" id="reference" name="reference" accept="image/*">
                 </div>
-
-                <button type="submit">Send Commission Request</button>
+                <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Submit Order</button>
             </form>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Seed 13 Productions. All rights reserved. | #nokings</p>
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="logo">Seed <span>13</span> Productions</a>
+                <p>AI artist and creative developer. Building strange, beautiful things at the intersection of technology and craft.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Galleries</h4>
+                    <ul>
+                        <li><a href="dwarves.html">Dwarves</a></li>
+                        <li><a href="urban-sage/urban-sage.html">Urban Sage</a></li>
+                        <li><a href="workshop-wanderer/workshop-wanderer.html">Workshop Wanderer</a></li>
+                        <li><a href="woodsey-gallery.html">Woodsey</a></li>
+                        <li><a href="sports-officials.html">Sports Officials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="field-guide/">Field Guide</a></li>
+                        <li><a href="/games/survival/">Survival Games</a></li>
+                        <li><a href="https://github.com/Cavedragon13">GitHub</a></li>
+                        <li><a href="#order">Commission</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&#169; 2026 Seed 13 Productions. All rights reserved.</p>
+            <span class="nokings">#nokings</span>
+        </div>
+    </div>
+</footer>
 
-    <script>
-        // Gallery data (replace with your actual image URLs)
-        const galleryImages = [
-            { thumb: 'https://placehold.co/300x400/1a1a2e/00d4ff?text=Fantasy+Warrior', full: 'https://placehold.co/800x1200/1a1a2e/00d4ff?text=Fantasy+Warrior', caption: 'Fantasy Warrior', alt: 'AI-generated fantasy warrior' },
-            { thumb: 'https://placehold.co/300x400/16213e/ff6b9d?text=Sci-Fi+Portrait', full: 'https://placehold.co/800x1200/16213e/ff6b9d?text=Sci-Fi+Portrait', caption: 'Sci-Fi Portrait', alt: 'Futuristic character design' },
-            { thumb: 'https://placehold.co/300x400/1a1a2e/00d4ff?text=Abstract+Art', full: 'https://placehold.co/800x1200/1a1a2e/00d4ff?text=Abstract+Art', caption: 'Abstract Art', alt: 'Digital abstract composition' },
-            { thumb: 'https://placehold.co/300x400/16213e/ff6b9d?text=Dragon+Portrait', full: 'https://placehold.co/800x1200/16213e/ff6b9d?text=Dragon+Portrait', caption: 'Dragon Portrait', alt: 'Mythical dragon artwork' },
-            { thumb: 'https://placehold.co/300x400/1a1a2e/00d4ff?text=Space+Scene', full: 'https://placehold.co/800x1200/1a1a2e/00d4ff?text=Space+Scene', caption: 'Space Scene', alt: 'Cosmic landscape' },
-            { thumb: 'https://placehold.co/300x400/16213e/ff6b9d?text=Character+Study', full: 'https://placehold.co/800x1200/16213e/ff6b9d?text=Character+Study', caption: 'Character Study', alt: 'Detailed character portrait' },
-            // Add more images as needed - this structure supports easy expansion
-        ];
+<script>
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-        // Gallery functionality
-        let currentImageIndex = 0;
-
-        function populateGallery() {
-            const gallery = document.getElementById('galleryGrid');
-            const styleSelect = document.getElementById('style');
-            
-            galleryImages.forEach((image, index) => {
-                // Create gallery thumbnail
-                const img = document.createElement('img');
-                img.src = image.thumb;
-                img.alt = image.alt;
-                img.className = 'thumbnail';
-                img.tabIndex = 0;
-                img.setAttribute('draggable', 'false');
-                img.addEventListener('click', () => openModal(index));
-                img.addEventListener('keydown', e => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        openModal(index);
-                    }
-                });
-                gallery.appendChild(img);
-
-                // Add to style dropdown
-                const option = document.createElement('option');
-                option.value = image.caption;
-                option.textContent = image.caption;
-                styleSelect.appendChild(option);
-            });
-        }
-
-        // Modal/Lightbox functionality
-        const modal = document.getElementById('modal');
-        const modalImg = document.getElementById('modalImg');
-
-        function openModal(index) {
-            currentImageIndex = index;
-            modalImg.src = galleryImages[index].full;
-            modalImg.alt = galleryImages[index].alt;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            modalImg.src = '';
-            document.body.style.overflow = '';
-        }
-
-        function showPrev() {
-            if (currentImageIndex > 0) {
-                openModal(currentImageIndex - 1);
-            }
-        }
-
-        function showNext() {
-            if (currentImageIndex < galleryImages.length - 1) {
-                openModal(currentImageIndex + 1);
-            }
-        }
-
-        // Event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            populateGallery();
-
-            // Modal controls
-            document.getElementById('closeModal').onclick = closeModal;
-            document.getElementById('prevBtn').onclick = showPrev;
-            document.getElementById('nextBtn').onclick = showNext;
-            document.getElementById('homeBtn').onclick = closeModal;
-
-            // Click outside modal to close
-            modal.addEventListener('click', e => {
-                if (e.target === modal) closeModal();
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', e => {
-                if (!modal.classList.contains('active')) return;
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowLeft') showPrev();
-                if (e.key === 'ArrowRight') showNext();
-            });
-
-            // Email form submission
-            const emailForm = document.getElementById('emailForm');
-            const emailMsg = document.getElementById('emailMsg');
-            emailForm.onsubmit = async e => {
-                e.preventDefault();
-                const email = emailForm.email.value.trim();
-                if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-                    emailMsg.textContent = 'Please enter a valid email.';
-                    emailMsg.style.color = '#ff6b6b';
-                    return;
-                }
-                emailMsg.textContent = 'Thank you! You will receive updates about new artwork.';
-                emailMsg.style.color = 'var(--accent-primary)';
-                emailForm.reset();
-                // TODO: Integrate with backend/email service
-            };
-
-            // Custom order form
-            document.getElementById('orderForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Commission request submitted! You will receive a response within 24 hours.');
-                // TODO: Integrate with your actual form handler
-            });
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
         });
-
-        // Image protection - prevent right-click and dragging
-        document.addEventListener('contextmenu', function(e) {
-            if (e.target.classList.contains('thumbnail') || e.target.classList.contains('modal-img')) {
-                e.preventDefault();
-            }
-        });
-
-        // Prevent image dragging
-        document.addEventListener('dragstart', function(e) {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session: Urban Sage</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #18181b; /* Zinc 900 */
+            color: #f4f4f5; /* Zinc 100 */
+            margin: 0;
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            color: #e4e4e7; /* Zinc 200 */
+            border-bottom: 2px solid #3f3f46; /* Zinc 700 */
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            background-color: #27272a; /* Zinc 800 */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #3f3f46; /* Zinc 700 */
+        }
+        .gallery-item .image-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2/3;
+            background-color: #18181b; /* Zinc 900 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .gallery-item .caption {
+            padding: 0.75rem 1rem;
+            background-color: #3f3f46; /* Zinc 700 */
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #d4d4d8; /* Zinc 300 */
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem 0;
+            color: #71717a; /* Zinc 500 - more subtle */
+            font-size: 0.75rem;
+        }
+
+        /* -- SLIDER STYLES -- */
+        .comparison-slider {
+            cursor: ew-resize;
+        }
+        .comparison-slider .after-image {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .comparison-slider .before-wrapper {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden;
+        }
+        .comparison-slider .slider-line {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 3px;
+            background-color: rgba(255,255,255,0.7);
+            pointer-events: none;
+            transform: translateX(-1.5px);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .comparison-slider .slider-handle {
+            position: absolute;
+            top: 50%;
+            width: 44px; height: 44px;
+            border: 3px solid rgba(255,255,255,0.7);
+            border-radius: 50%;
+            background-color: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .slider-handle svg {
+            width: 24px; height: 24px; color: white; transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>Urban Sage</h1>
+    <div class="gallery">
+        <!-- Step 1: Slider -->
+        <div class="gallery-item">
+            <div class="image-container comparison-slider">
+                <img src="images/step_1_after.png" class="after-image" alt="After: Urban Sage - Step 1">
+                <div class="before-wrapper">
+                    <img src="images/step_1_before.png" class="before-image" alt="Before: Urban Sage - Step 1">
+                </div>
+                <div class="slider-line">
+                    <div class="slider-handle">
+                       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">Urban Sage - Step 1</div>
+        </div>
+        <!-- Steps 2-9: Solo images -->
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_2_after.png" alt="Urban Sage - Step 2 - Reference Sheet">
+            </div>
+            <div class="caption">Urban Sage - Step 2 - Reference Sheet</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_3_after.png" alt="Urban Sage - Step 3">
+            </div>
+            <div class="caption">Urban Sage - Step 3</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_4_after.png" alt="Urban Sage - Step 4">
+            </div>
+            <div class="caption">Urban Sage - Step 4</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_5_after.png" alt="Urban Sage - Step 5">
+            </div>
+            <div class="caption">Urban Sage - Step 5</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_6_after.png" alt="Urban Sage - Step 6">
+            </div>
+            <div class="caption">Urban Sage - Step 6</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_7_after.png" alt="Urban Sage - Step 7">
+            </div>
+            <div class="caption">Urban Sage - Step 7</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_8_after.png" alt="Urban Sage - Step 8">
+            </div>
+            <div class="caption">Urban Sage - Step 8</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_9_after.png" alt="Urban Sage - Step 9">
+            </div>
+            <div class="caption">Urban Sage - Step 9</div>
+        </div>
+        <!-- Step 12: Slider -->
+        <div class="gallery-item">
+            <div class="image-container comparison-slider">
+                <img src="images/step_12_after.png" class="after-image" alt="After: Urban Sage - Step 12">
+                <div class="before-wrapper">
+                    <img src="images/step_12_before.png" class="before-image" alt="Before: Urban Sage - Step 12">
+                </div>
+                <div class="slider-line">
+                    <div class="slider-handle">
+                       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">Urban Sage - Step 12</div>
+        </div>
+        <!-- Steps 13-15: Solo images -->
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_13_after.png" alt="Harper's Bizarre Magazine Cover">
+            </div>
+            <div class="caption">Harper's Bizarre Magazine Cover</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_14_after.png" alt="Syrens Magazine Cover">
+            </div>
+            <div class="caption">Syrens Magazine Cover</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_15_after.png" alt="Urban Sage - Step 15">
+            </div>
+            <div class="caption">Urban Sage - Step 15</div>
+        </div>
+        <!-- Step 16: Slider -->
+        <div class="gallery-item">
+            <div class="image-container comparison-slider">
+                <img src="images/step_16_after.png" class="after-image" alt="After: Urban Sage - Step 16">
+                <div class="before-wrapper">
+                    <img src="images/step_16_before.png" class="before-image" alt="Before: Urban Sage - Step 16">
+                </div>
+                <div class="slider-line">
+                    <div class="slider-handle">
+                       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">Urban Sage - Step 16</div>
+        </div>
+        <!-- Steps 18-21: Sliders -->
+        <div class="gallery-item">
+            <div class="image-container comparison-slider">
+                <img src="images/step_18_after.png" class="after-image" alt="After: Urban Sage - Step 18">
+                <div class="before-wrapper">
+                    <img src="images/step_18_before.png" class="before-image" alt="Before: Urban Sage - Step 18">
+                </div>
+                <div class="slider-line">
+                    <div class="slider-handle">
+                       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">Urban Sage - Step 18</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container comparison-slider">
+                <img src="images/step_19_after.png" class="after-image" alt="After: Urban Sage - Step 19">
+                <div class="before-wrapper">
+                    <img src="images/step_19_before.png" class="before-image" alt="Before: Urban Sage - Step 19">
+                </div>
+                <div class="slider-line">
+                    <div class="slider-handle">
+                       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">Urban Sage - Step 19</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container comparison-slider">
+                <img src="images/step_20_after.png" class="after-image" alt="After: Urban Sage - Step 20">
+                <div class="before-wrapper">
+                    <img src="images/step_20_before.png" class="before-image" alt="Before: Urban Sage - Step 20">
+                </div>
+                <div class="slider-line">
+                    <div class="slider-handle">
+                       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">Urban Sage - Step 20</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container comparison-slider">
+                <img src="images/step_21_after.png" class="after-image" alt="After: Urban Sage - Step 21">
+                <div class="before-wrapper">
+                    <img src="images/step_21_before.png" class="before-image" alt="Before: Urban Sage - Step 21">
+                </div>
+                <div class="slider-line">
+                    <div class="slider-handle">
+                       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">Urban Sage - Step 21</div>
+        </div>
+        <!-- Steps 22 & 24: Solo images -->
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_22_after.png" alt="Raiders of the Last Bladerunner">
+            </div>
+            <div class="caption">Raiders of the Last Bladerunner</div>
+        </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="images/step_24_after.png" alt="The Dragon Smoker - Movie Poster">
+            </div>
+            <div class="caption">The Dragon Smoker - Movie Poster</div>
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 Seed 13 Productions
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.comparison-slider').forEach(slider => {
+                let isDragging = false;
+                const beforeWrapper = slider.querySelector('.before-wrapper');
+                const sliderLine = slider.querySelector('.slider-line');
+
+                const setSliderPosition = (x) => {
+                    const rect = slider.getBoundingClientRect();
+                    const percent = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+                    beforeWrapper.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+                    sliderLine.style.left = `${percent}%`;
+                };
+
+                slider.addEventListener('pointerdown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    setSliderPosition(e.clientX);
+                });
+
+                slider.addEventListener('pointermove', (e) => {
+                    if (isDragging) {
+                        e.preventDefault();
+                        setSliderPosition(e.clientX);
+                    }
+                });
+
+                window.addEventListener('pointerup', (e) => {
+                    if (isDragging) {
+                        e.preventDefault();
+                        isDragging = false;
+                    }
+                });
+
+                slider.addEventListener('pointerleave', (e) => {
+                    if(isDragging) {
+                       // Keep dragging if mouse leaves container
+                    }
+                });
+
+                setSliderPosition(slider.getBoundingClientRect().left + slider.getBoundingClientRect().width / 2);
+            });
+        });
+    </script>
+</body>
+</html>
