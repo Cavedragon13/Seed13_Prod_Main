@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session: The Scavenger Dragon</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #18181b; /* Zinc 900 */
+            color: #f4f4f5; /* Zinc 100 */
+            margin: 0; 
+            padding: 2rem; 
+        }
+        h1 { 
+            text-align: center; 
+            color: #e4e4e7; /* Zinc 200 */
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        h2 {
+            color: #a1a1aa;
+            border-bottom: 1px solid #3f3f46;
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); 
+            gap: 2rem; 
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+        .gallery-item { 
+            background-color: #27272a; /* Zinc 800 */
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+            display: flex; 
+            flex-direction: column;
+            border: 1px solid #3f3f46; /* Zinc 700 */
+        }
+        .gallery-item .image-container { 
+            position: relative; 
+            width: 100%; 
+            background-color: #18181b; /* Zinc 900 */
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+        }
+        /* Maintain aspect ratios based on containers, but limit height */
+        .gallery-item .image-container { min-height: 400px; }
+
+        .gallery-item img { 
+            max-width: 100%; 
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .gallery-item .caption { 
+            padding: 0.75rem 1rem; 
+            background-color: #3f3f46; /* Zinc 700 */
+            text-align: center; 
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #d4d4d8; /* Zinc 300 */
+        }
+        footer { 
+            text-align: center; 
+            margin-top: 3rem; 
+            padding-top: 1.5rem; 
+            border-top: 1px solid #3f3f46; /* Zinc 700 */
+            color: #a1a1aa; /* Zinc 400 */
+        }
+        
+        /* -- SLIDER STYLES -- */
+        .comparison-slider { 
+            cursor: ew-resize; 
+            position: relative;
+            aspect-ratio: 2/3; /* Default fallback */
+        }
+        .comparison-slider img {
+            width: 100%; height: 100%; object-fit: contain;
+        }
+        .comparison-slider .after-image {
+            position: absolute; top: 0; left: 0;
+        }
+        .comparison-slider .before-wrapper { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            overflow: hidden; 
+        }
+        .comparison-slider .slider-line { 
+            position: absolute; 
+            top: 0; bottom: 0; 
+            width: 3px; 
+            background-color: rgba(255,255,255,0.7); 
+            pointer-events: none; 
+            transform: translateX(-1.5px); 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .comparison-slider .slider-handle { 
+            position: absolute; 
+            top: 50%; 
+            width: 44px; height: 44px; 
+            border: 3px solid rgba(255,255,255,0.7); 
+            border-radius: 50%; 
+            background-color: rgba(24, 24, 27, 0.6); 
+            backdrop-filter: blur(4px);
+            pointer-events: none; 
+            transform: translate(-50%, -50%); 
+            display: flex; align-items: center; justify-content: center; 
+        }
+        .slider-handle svg { 
+            width: 24px; height: 24px; color: white; transform: rotate(90deg); 
+        }
+    </style>
+</head>
+<body>
+    <h1>The Scavenger Dragon</h1>
+    
+    <h2>Transformations & Comparisons</h2><div class="gallery">
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_13_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 13 (freestyle)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 13 (freestyle)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 13 (freestyle)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_1_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 1 (edit)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 1 (edit)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 1 (edit)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_14_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 14 (edit)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 14 (edit)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 14 (edit)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_15_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 15 (edit)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 15 (edit)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 15 (edit)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_16_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 16 (edit)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 16 (edit)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 16 (edit)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_17_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 17 (edit)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 17 (edit)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 17 (edit)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_18_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 18 (edit)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 18 (edit)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 18 (edit)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_19_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 19 (edit)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 19 (edit)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 19 (edit)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_20_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 20 (edit)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 20 (edit)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 20 (edit)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_12_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 12 (comicSplash)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 12 (comicSplash)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 12 (comicSplash)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_11_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 11 (comicBookCover)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 11 (comicBookCover)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 11 (comicBookCover)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_10_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 10 (pinup)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 10 (pinup)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 10 (pinup)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_2_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 2 (diorama)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 2 (diorama)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 2 (diorama)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_3_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 3 (actionFigure)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 3 (actionFigure)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 3 (actionFigure)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container comparison-slider">
+                    <img src="images/step_4_after.png" class="after-image" alt="After: The Scavenger Dragon - Step 4 (actionFigure)">
+                    <div class="before-wrapper">
+                        <img src="images/source_image.png" class="before-image" alt="Before: The Scavenger Dragon - Step 4 (actionFigure)">
+                    </div>
+                    <div class="slider-line">
+                        <div class="slider-handle">
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 4 (actionFigure)</div>
+            </div></div>
+    <h2>Gallery</h2><div class="gallery">
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="images/step_7_after.png" alt="The Scavenger Dragon - Step 7 (horrorMoviePoster)">
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 7 (horrorMoviePoster)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="images/step_8_after.png" alt="The Scavenger Dragon - Step 8 (horrorMoviePoster)">
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 8 (horrorMoviePoster)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="images/step_9_after.png" alt="The Scavenger Dragon - Step 9 (horrorMoviePoster)">
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 9 (horrorMoviePoster)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="images/step_5_after.png" alt="The Scavenger Dragon - Step 5 (fantasyMoviePoster)">
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 5 (fantasyMoviePoster)</div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-container">
+                    <img src="images/step_6_after.png" alt="The Scavenger Dragon - Step 6 (sciFiMoviePoster)">
+                </div>
+                <div class="caption">The Scavenger Dragon - Step 6 (sciFiMoviePoster)</div>
+            </div></div>
+
+    <footer>
+        &copy; 2026 Seed 13 Productions
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.comparison-slider').forEach(slider => {
+                let isDragging = false;
+                const beforeWrapper = slider.querySelector('.before-wrapper');
+                const sliderLine = slider.querySelector('.slider-line');
+
+                const setSliderPosition = (x) => {
+                    const rect = slider.getBoundingClientRect();
+                    const percent = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+                    beforeWrapper.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+                    sliderLine.style.left = `${percent}%`;
+                };
+
+                slider.addEventListener('pointerdown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    setSliderPosition(e.clientX);
+                });
+                
+                slider.addEventListener('pointermove', (e) => {
+                    if (isDragging) {
+                        e.preventDefault();
+                        setSliderPosition(e.clientX);
+                    }
+                });
+
+                window.addEventListener('pointerup', (e) => {
+                    if (isDragging) {
+                        e.preventDefault();
+                        isDragging = false;
+                    }
+                });
+                
+                slider.addEventListener('pointerleave', (e) => {
+                    if(isDragging) {
+                       // Keep dragging if mouse leaves container
+                    }
+                });
+
+                setSliderPosition(slider.getBoundingClientRect().left + slider.getBoundingClientRect().width / 2);
+            });
+        });
+    </script>
+<div style="text-align:center;padding:2rem;font-family:sans-serif;"><a href="/" style="color:#C8571A;text-decoration:none;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;"></body>#8592; Seed 13 Productions</a></div>
+</body>
+</html>
