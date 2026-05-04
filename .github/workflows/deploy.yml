@@ -1,44 +1,23 @@
-name: SFTP Deploy to Hostinger
-
+name: Deploy to Hostinger
 on:
   push:
-    branches:
-      - main
-
+    branches: [main]
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Deploy via rsync over SSH
-        env:
-          SSH_HOST: 82.197.80.13
-          SSH_PORT: 65002
-          SSH_USER: u760631640
-          SSH_KEY: ${{ secrets.HOSTINGER_SFTP_KEY }}
-        run: |
-          # Create SSH key file
-          echo "$SSH_KEY" > key.pem
-          chmod 600 key.pem
-          
-          # Create .ssh directory and add host to known_hosts
-          mkdir -p ~/.ssh
-          ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
-          
-          # First, check what directories exist
-          ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "ls -la"
-          
-          # Deploy using rsync — NO --delete flag intentionally.
-          # Images/videos are uploaded directly to Hostinger and must not be wiped.
-          # Only add/update files from the repo.
-          rsync -avz \
-            -e "ssh -i key.pem -p $SSH_PORT -o StrictHostKeyChecking=no" \
-            --exclude='.git*' --exclude='README.md' --exclude='CLAUDE.md' \
-            --exclude='test-deploy.html' \
-            ./ $SSH_USER@$SSH_HOST:domains/seed13.com/public_html/
-          
-          # Clean up key file
-          rm -f key.pem
+      - uses: actions/checkout@v4
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          port: 21
+          local-dir: ./
+          server-dir: /domains/seed13.com/public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.github/**
