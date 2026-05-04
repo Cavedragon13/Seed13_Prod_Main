@@ -1,928 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seed 13 Productions | Cavedragon — AI Artist & Creative Developer</title>
-    <meta name="description" content="AI-generated fantasy art, character galleries, interactive experiences, and creative tools by Cavedragon. Seed 13 Productions.">
-    <meta property="og:title" content="Seed 13 Productions | Cavedragon">
-    <meta property="og:description" content="Fantasy art, character galleries, and interactive experiments from the forge.">
-    <meta property="og:type" content="website">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cavedragon | Seed 13 Productions</title>
+  <meta name="description" content="AI art by Cavedragon — fantasy characters, steampunk dragons, western gunslingers, and more. Seed 13 Productions.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --forge-black:   #0B0906;
-            --ember-dark:    #13100C;
-            --ash-mid:       #1E1812;
-            --forge-border:  #3A2E1E;
-            --ember-dim:     #5C3D1A;
-            --ember:         #C8571A;
-            --ember-bright:  #E06820;
-            --gold:          #C9920F;
-            --gold-light:    #E0B030;
-            --parchment:     #EDE0C8;
-            --aged:          #A89070;
-            --muted:         #6B5840;
-            --jade:          #1A3A2A;
-            --jade-light:    #2A5C3F;
-            --glow:          rgba(200, 87, 26, 0.18);
-            --radius:        4px;
-            --radius-lg:     8px;
-            --transition:    0.25s ease;
-        }
+  <style>
+    :root {
+      --bg:          #0f0f0f;
+      --bg2:         #1a1a2e;
+      --bg3:         #16213e;
+      --cyan:        #00d4ff;
+      --pink:        #ff6b9d;
+      --text:        #ffffff;
+      --muted:       #a0a0a0;
+      --dim:         #666;
+      --radius:      10px;
+      --shadow:      0 4px 20px rgba(0,0,0,.4);
+      --shadow-h:    0 8px 32px rgba(0,212,255,.18);
+      --trans:       .25s ease;
+    }
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            background: var(--forge-black);
-            color: var(--parchment);
-            font-family: 'Lora', Georgia, serif;
-            font-size: 16px;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
+    html { scroll-behavior: smooth; }
 
-        h1, h2, h3, h4 { font-family: 'Cinzel', serif; letter-spacing: 0.03em; }
-        h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 900; }
-        h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; }
-        h3 { font-size: 1rem; font-weight: 600; }
-        p  { color: var(--aged); }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        a { color: var(--ember); text-decoration: none; transition: color var(--transition); }
-        a:hover { color: var(--ember-bright); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    ::selection { background: var(--cyan); color: #000; }
 
-        /* ─── HEADER ─── */
-        header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            background: rgba(11, 9, 6, 0.94);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--forge-border);
-        }
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
-            font-weight: 900;
-            color: var(--ember);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        .logo span { color: var(--gold); }
-        .logo:hover { color: var(--ember-bright); }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-        .nav-links a {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--aged);
-        }
-        .nav-links a:hover { color: var(--parchment); }
-        .nav-cta {
-            padding: 0.45rem 1.1rem;
-            border: 1px solid var(--ember);
-            color: var(--ember) !important;
-            border-radius: var(--radius);
-            transition: background var(--transition), color var(--transition) !important;
-        }
-        .nav-cta:hover { background: var(--ember); color: var(--forge-black) !important; }
-        .nav-hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-        .nav-hamburger span {
-            display: block;
-            width: 24px; height: 2px;
-            background: var(--aged);
-            margin: 5px 0;
-        }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { color: var(--pink); }
 
-        /* ─── HERO ─── */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-        }
-        .hero-text {
-            padding: 6rem 3rem 4rem 24px;
-            max-width: 580px;
-        }
-        .hero-eyebrow {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--ember);
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .hero-eyebrow::before {
-            content: '';
-            display: block;
-            width: 28px; height: 1px;
-            background: var(--ember);
-        }
-        .hero h1 { color: var(--parchment); margin-bottom: 1.5rem; line-height: 1.1; }
-        .hero h1 em { font-style: normal; color: var(--ember); }
-        .hero-desc {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--aged);
-            margin-bottom: 2.5rem;
-        }
-        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn-primary {
-            display: inline-block;
-            padding: 0.85rem 2rem;
-            background: var(--ember);
-            color: var(--forge-black);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: var(--radius);
-            transition: background var(--transition), transform var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        .btn-primary:hover { background: var(--ember-bright); color: var(--forge-black); transform: translateY(-2px); }
-        .btn-secondary {
-            display: inline-block;
-            padding: 0.85rem 2rem;
-            border: 1px solid var(--forge-border);
-            color: var(--aged);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: var(--radius);
-            transition: border-color var(--transition), color var(--transition), transform var(--transition);
-        }
-        .btn-secondary:hover { border-color: var(--aged); color: var(--parchment); transform: translateY(-2px); }
-        .hero-stats {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--forge-border);
-            display: flex;
-            gap: 3rem;
-        }
-        .stat-number {
-            font-family: 'Cinzel', serif;
-            font-size: 1.9rem;
-            font-weight: 700;
-            color: var(--ember);
-            display: block;
-            line-height: 1;
-        }
-        .stat-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-top: 4px;
-        }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
 
-        /* Hero mosaic */
-        .hero-mosaic {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .hero-mosaic::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 120px;
-            background: linear-gradient(to right, var(--forge-black), transparent);
-            z-index: 2;
-            pointer-events: none;
-        }
-        .mosaic-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(3, 1fr);
-            gap: 3px;
-            height: 100%;
-            padding-top: 64px;
-        }
-        .mosaic-cell {
-            overflow: hidden;
-            background: var(--ash-mid);
-        }
-        .mosaic-cell:first-child { grid-row: span 2; }
-        .mosaic-cell img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            opacity: 0.65;
-            filter: sepia(0.25) saturate(0.8);
-            transition: opacity 0.4s;
-        }
-        .mosaic-cell:hover img { opacity: 0.85; }
-        .mosaic-placeholder {
-            width: 100%; height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            background: var(--ash-mid);
-            color: var(--forge-border);
-        }
+    /* ── Header ── */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: rgba(0,0,0,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding: .9rem 0;
+    }
 
-        /* ─── DIVIDER ─── */
-        .forge-divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--forge-border), transparent);
-        }
+    header nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        /* ─── SECTION ─── */
-        .section { padding: 6rem 0; }
-        .section-header { margin-bottom: 3.5rem; }
-        .section-eyebrow {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--ember);
-            margin-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-        }
-        .section-eyebrow::before {
-            content: '';
-            display: block;
-            width: 20px; height: 1px;
-            background: var(--ember);
-        }
-        .section-header h2 { color: var(--parchment); margin-bottom: 0.6rem; }
-        .section-header p { max-width: 520px; }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        /* ─── GALLERIES ─── */
-        #galleries { background: var(--ember-dark); }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
+    .nav-links a {
+      color: var(--text);
+      font-weight: 500;
+      padding: .4rem .9rem;
+      border-radius: var(--radius);
+      transition: var(--trans);
+    }
 
-        .gallery-card {
-            background: var(--ash-mid);
-            border: 1px solid var(--forge-border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-        }
-        .gallery-card:hover {
-            border-color: var(--ember-dim);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px var(--glow);
-        }
-        .gallery-card a { display: block; text-decoration: none; }
-        .gallery-card.coming-soon { opacity: 0.55; }
-        .gallery-card.coming-soon:hover { transform: none; box-shadow: none; border-color: var(--forge-border); }
+    .nav-links a:hover {
+      color: var(--cyan);
+      background: rgba(0,212,255,.1);
+    }
 
-        .gallery-card.featured { grid-column: span 2; }
+    /* ── Hero ── */
+    .hero {
+      min-height: 52vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      background:
+        radial-gradient(circle at 20% 80%, var(--bg2) 0%, transparent 55%),
+        radial-gradient(circle at 80% 20%, var(--bg3) 0%, transparent 55%);
+      position: relative;
+      overflow: hidden;
+    }
 
-        .gallery-thumb {
-            position: relative;
-            overflow: hidden;
-            background: var(--forge-border);
-        }
-        .gallery-thumb { aspect-ratio: 3/4; }
-        .gallery-card.featured .gallery-thumb { aspect-ratio: 16/9; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="g" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0L0 0 0 10" fill="none" stroke="%23ffffff" stroke-width=".4" opacity=".08"/></pattern></defs><rect width="100" height="100" fill="url(%23g)"/></svg>');
+    }
 
-        .gallery-thumb img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            opacity: 0.82;
-            filter: sepia(0.15) saturate(0.88);
-            transition: opacity 0.4s, transform 0.4s;
-        }
-        .gallery-card:not(.coming-soon):hover .gallery-thumb img { opacity: 1; transform: scale(1.04); }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 3rem 0 4rem;
+    }
 
-        .thumb-placeholder {
-            width: 100%; height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--forge-border), var(--ash-mid));
-        }
+    .hero-inner h1 {
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .6rem;
+    }
 
-        .gallery-badge {
-            position: absolute;
-            top: 10px; right: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 3px 7px;
-            border-radius: 2px;
-            z-index: 2;
-        }
-        .badge-live { background: var(--ember); color: var(--forge-black); }
-        .badge-soon { background: var(--jade); color: var(--parchment); border: 1px solid var(--jade-light); }
-        .badge-new  { background: var(--gold); color: var(--forge-black); }
+    .hero-inner .tagline {
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
 
-        .gallery-info { padding: 1.2rem 1.2rem 1.4rem; }
-        .gallery-info h3 { color: var(--parchment); margin-bottom: 0.4rem; }
-        .gallery-info p  { font-size: 0.84rem; line-height: 1.55; margin-bottom: 0.75rem; color: var(--muted); }
-        .gallery-meta {
-            display: flex;
-            gap: 1rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--ember-dim);
-        }
+    /* ── Galleries ── */
+    .galleries {
+      padding: 5rem 0 6rem;
+    }
 
-        /* ─── PROJECTS ─── */
-        #projects { background: var(--forge-black); }
+    .galleries h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
-        }
-        .project-card {
-            background: var(--ash-mid);
-            border: 1px solid var(--forge-border);
-            border-radius: var(--radius-lg);
-            padding: 1.75rem 2rem;
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-            transition: border-color var(--transition), box-shadow var(--transition);
-        }
-        .project-card:hover {
-            border-color: var(--ember-dim);
-            box-shadow: 0 8px 30px var(--glow);
-        }
-        .project-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
-        .project-body h3 { color: var(--parchment); margin-bottom: 0.35rem; }
-        .project-body p  { font-size: 0.86rem; line-height: 1.6; margin-bottom: 0.9rem; }
-        .project-link {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--ember);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .project-link:hover { gap: 0.7rem; color: var(--ember-bright); }
-        .project-link::after { content: '→'; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+    }
 
-        /* ─── ORDER ─── */
-        #order {
-            background: var(--ember-dark);
-            border-top: 1px solid var(--forge-border);
-            border-bottom: 1px solid var(--forge-border);
-        }
-        .order-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: start;
-        }
-        .order-intro h2 { margin-bottom: 1rem; }
-        .order-intro > p { margin-bottom: 0.75rem; }
-        .forge-list {
-            list-style: none;
-            margin-top: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.55rem;
-        }
-        .forge-list li {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.84rem;
-            color: var(--aged);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .forge-list li::before { content: '◆'; color: var(--ember); font-size: 0.4rem; }
-        .form-group { margin-bottom: 1.2rem; }
-        .form-group label {
-            display: block;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 0.4rem;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            background: var(--forge-black);
-            border: 1px solid var(--forge-border);
-            border-radius: var(--radius);
-            padding: 0.7rem 0.9rem;
-            color: var(--parchment);
-            font-family: 'Lora', serif;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color var(--transition);
-            -webkit-appearance: none;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus { border-color: var(--ember); }
-        .form-group textarea { min-height: 96px; resize: vertical; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
 
-        /* ─── FOOTER ─── */
-        footer {
-            background: var(--forge-black);
-            border-top: 1px solid var(--forge-border);
-            padding: 3rem 0 2rem;
-        }
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-        }
-        .footer-brand .logo { font-size: 1rem; display: inline-block; margin-bottom: 0.5rem; }
-        .footer-brand p {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
-            color: var(--muted);
-            max-width: 260px;
-        }
-        .footer-links { display: flex; gap: 4rem; }
-        .footer-col h4 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.62rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 0.9rem;
-        }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 0.5rem; }
-        .footer-col a {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.82rem;
-            color: var(--aged);
-        }
-        .footer-col a:hover { color: var(--parchment); }
-        .footer-bottom {
-            border-top: 1px solid var(--forge-border);
-            padding-top: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .footer-bottom p {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            color: var(--muted);
-        }
-        .nokings {
-            font-family: 'Cinzel', serif;
-            font-size: 0.68rem;
-            letter-spacing: 0.2em;
-            color: var(--ember-dim);
-            text-transform: uppercase;
-        }
+    .gallery-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans);
+    }
 
-        /* ─── REVEAL ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-        .reveal.visible { opacity: 1; transform: none; }
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-h);
+      border-color: rgba(0,212,255,.35);
+    }
 
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 900px) {
-            .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .gallery-card.featured { grid-column: span 2; }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                gap: 0;
-                position: absolute;
-                top: 100%; left: 0; right: 0;
-                background: rgba(11,9,6,0.98);
-                border-bottom: 1px solid var(--forge-border);
-                padding: 0.5rem 0;
-            }
-            .nav-links.open li { padding: 0.7rem 24px; }
-            .nav-hamburger { display: block; }
-            .hero { grid-template-columns: 1fr; min-height: auto; }
-            .hero-text { padding: 5rem 24px 2rem; max-width: 100%; }
-            .hero-mosaic { display: none; }
-            .hero-stats { gap: 2rem; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .gallery-card.featured { grid-column: span 1; }
-            .gallery-card.featured .gallery-thumb { aspect-ratio: 16/9; }
-            .gallery-thumb { aspect-ratio: 16/9; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .order-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .footer-inner { flex-direction: column; }
-            .footer-links { gap: 2rem; }
-            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-        }
-    </style>
+    .gallery-card .thumb-wrap {
+      height: 220px;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+
+    .gallery-card .thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .gallery-card:hover .thumb-wrap img {
+      transform: scale(1.04);
+    }
+
+    .gallery-card .card-body {
+      padding: 1.25rem 1.4rem 1.5rem;
+    }
+
+    .gallery-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .4rem;
+    }
+
+    .gallery-card p {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.55;
+    }
+
+    .gallery-card .view-link {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--cyan);
+      transition: color var(--trans);
+    }
+
+    .gallery-card .view-link:hover { color: var(--pink); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.6);
+      text-align: center;
+      padding: 1.75rem 0;
+      color: var(--dim);
+      font-size: .88rem;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ─── HEADER ─── -->
-<header>
-    <nav>
-        <a href="/" class="logo">Seed <span>13</span> Productions</a>
-        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#galleries">Galleries</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="field-guide/">Field Guide</a></li>
-            <li><a href="#order" class="nav-cta">Custom Order</a></li>
-        </ul>
+  <header>
+    <nav class="container">
+      <span class="logo">Seed 13 Productions</span>
+      <ul class="nav-links">
+        <li><a href="#galleries">Galleries</a></li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<!-- ─── HERO ─── -->
-<section class="hero">
-    <div class="hero-text">
-        <div class="hero-eyebrow">AI Artist &amp; Creative Developer</div>
-        <h1>Built in the <em>forge</em>,<br>not the cloud.</h1>
-        <p class="hero-desc">
-            Cavedragon is a Gen X artist working at the intersection of AI tools,
-            fantasy worldbuilding, and interactive storytelling. Character galleries,
-            playable experiments, and things that probably shouldn&apos;t exist — all
-            from the same workshop.
-        </p>
-        <div class="hero-actions">
-            <a href="#galleries" class="btn-primary">Enter the Galleries</a>
-            <a href="#projects" class="btn-secondary">See Projects</a>
-        </div>
-        <div class="hero-stats">
-            <div>
-                <span class="stat-number">100+</span>
-                <div class="stat-label">Dwarves</div>
-            </div>
-            <div>
-                <span class="stat-number">5</span>
-                <div class="stat-label">Galleries</div>
-            </div>
-            <div>
-                <span class="stat-number">#nokings</span>
-                <div class="stat-label">Always</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="hero-mosaic">
-        <div class="mosaic-grid">
-            <div class="mosaic-cell">
-                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_01-thumb.png"
-                     alt="Dwarf warrior" loading="lazy"
-                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#9876;</div>'">
-            </div>
-            <div class="mosaic-cell">
-                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_02-thumb.png"
-                     alt="Dwarf warrior 2" loading="lazy"
-                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#129302;</div>'">
-            </div>
-            <div class="mosaic-cell">
-                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_King_01-thumb.png"
-                     alt="Dwarf King" loading="lazy"
-                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#128081;</div>'">
-            </div>
-            <div class="mosaic-cell">
-                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_03-thumb.png"
-                     alt="Dwarf warrior 3" loading="lazy"
-                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#128293;</div>'">
-            </div>
-            <div class="mosaic-cell">
-                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_04-thumb.png"
-                     alt="Dwarf warrior 4" loading="lazy"
-                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#128737;</div>'">
-            </div>
-            <div class="mosaic-cell">
-                <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_statue_01-thumb.png"
-                     alt="Dwarf statue" loading="lazy"
-                     onerror="this.outerHTML='<div class=\'mosaic-placeholder\'>&#128255;</div>'">
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="forge-divider"></div>
-
-<!-- ─── GALLERIES ─── -->
-<section class="section" id="galleries">
+  <section class="hero">
     <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">Character Galleries</div>
-            <h2>The Collections</h2>
-            <p>Original characters, built world by world.</p>
-        </div>
-
-        <div class="gallery-grid">
-
-            <!-- FEATURED: Dwarves -->
-            <div class="gallery-card featured reveal">
-                <a href="dwarves.html">
-                    <div class="gallery-thumb">
-                        <span class="gallery-badge badge-live">Live</span>
-                        <img src="https://srv1386-files.hstgr.io/2b959180fc3a680a/files/public_html/assets/images/dwarves/thumbs/Dwarf_warrior_with_an_axe_01-thumb.png"
-                             alt="Dwarves Collection" loading="lazy"
-                             onerror="this.outerHTML='<div class=\'thumb-placeholder\'>&#9876;</div>'">
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Dwarves Collection</h3>
-                        <p>100 dwarf warriors, kings, smiths, and veterans. Fantasy character studies across every archetype the mountain holds.</p>
-                        <div class="gallery-meta">
-                            <span>95 Images</span>
-                            <span>8 Videos</span>
-                            <span>Fantasy</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Urban Sage -->
-            <div class="gallery-card reveal">
-                <a href="urban-sage/urban-sage.html">
-                    <div class="gallery-thumb">
-                        <span class="gallery-badge badge-new">New</span>
-                        <div class="thumb-placeholder">&#127748;</div>
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Urban Sage</h3>
-                        <p>Cyberpunk character concepts with before-and-after transformation work.</p>
-                        <div class="gallery-meta">
-                            <span>20+ Images</span>
-                            <span>Cyberpunk</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Workshop Wanderer -->
-            <div class="gallery-card reveal">
-                <a href="workshop-wanderer/workshop-wanderer.html">
-                    <div class="gallery-thumb">
-                        <span class="gallery-badge badge-new">New</span>
-                        <div class="thumb-placeholder">&#9881;</div>
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Workshop Wanderer</h3>
-                        <p>Steampunk inventors and mechanical characters, step-by-step from sketch to final render.</p>
-                        <div class="gallery-meta">
-                            <span>15+ Images</span>
-                            <span>Steampunk</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Woodsey -->
-            <div class="gallery-card coming-soon reveal">
-                <a href="woodsey-gallery.html">
-                    <div class="gallery-thumb">
-                        <span class="gallery-badge badge-soon">Migrating</span>
-                        <div class="thumb-placeholder">&#127794;</div>
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Woodsey</h3>
-                        <p>The Woodsey character universe — action figures, concept art, and animated content.</p>
-                        <div class="gallery-meta">
-                            <span>12 Images</span>
-                            <span>2 Videos</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Sports Officials -->
-            <div class="gallery-card coming-soon reveal">
-                <a href="sports-officials.html">
-                    <div class="gallery-thumb">
-                        <span class="gallery-badge badge-soon">Soon</span>
-                        <div class="thumb-placeholder">&#128226;</div>
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Sports Officials</h3>
-                        <p>Vintage pinup portraits of referees and officials. Six images, built with craft.</p>
-                        <div class="gallery-meta">
-                            <span>6 Images</span>
-                            <span>Pinup</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-        </div>
+      <div class="hero-inner">
+        <h1>Cavedragon</h1>
+        <p class="tagline">AI Artist &nbsp;•&nbsp; Seed 13 Productions</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<div class="forge-divider"></div>
-
-<!-- ─── PROJECTS ─── -->
-<section class="section" id="projects">
+  <section id="galleries" class="galleries">
     <div class="container">
-        <div class="section-header reveal">
-            <div class="section-eyebrow">Interactive Work</div>
-            <h2>Projects &amp; Experiments</h2>
-            <p>Things that run, not just things that hang on walls.</p>
+      <h2>Galleries</h2>
+      <div class="gallery-grid">
+
+        <div class="gallery-card">
+          <div class="thumb-wrap">
+            <img src="/galleries/dwarves/full/a_barbarian_dwarf_leader.png"
+                 alt="100 Dwarves — fantasy dwarf warrior thumbnail"
+                 loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>100 Dwarves</h3>
+            <p>A 100-piece series of fantasy dwarf warriors, kings, and ancient defenders.</p>
+            <a class="view-link" href="/galleries/dwarves/">View Gallery →</a>
+          </div>
         </div>
 
-        <div class="projects-grid">
-            <div class="project-card reveal">
-                <div class="project-icon">&#127925;</div>
-                <div class="project-body">
-                    <h3>Field Guide to Human Music</h3>
-                    <p>60 essential songs across 20 genres, curated to explain human music to extraterrestrial observers. Voting system, Gen X perspective.</p>
-                    <a href="field-guide/" class="project-link">Explore the Guide</a>
-                </div>
-            </div>
-            <div class="project-card reveal">
-                <div class="project-icon">&#127918;</div>
-                <div class="project-body">
-                    <h3>Survival Games</h3>
-                    <p>Browser-based survival decision games. Text-driven scenarios, branching consequences, and the occasional dragon.</p>
-                    <a href="/games/survival/" class="project-link">Play Now</a>
-                </div>
-            </div>
-            <div class="project-card reveal">
-                <div class="project-icon">&#127943;</div>
-                <div class="project-body">
-                    <h3>Horse Racing Simulator</h3>
-                    <p>Win, Place, and Show betting with AI opponents. Parlay tickets, persistent player progression, track conditions.</p>
-                    <a href="https://github.com/Cavedragon13/horse-racing-v2" class="project-link">View Project</a>
-                </div>
-            </div>
-            <div class="project-card reveal">
-                <div class="project-icon">&#128202;</div>
-                <div class="project-body">
-                    <h3>CryptoFlux Dashboard</h3>
-                    <p>Live cryptocurrency price tracking, portfolio management, and alert system with AdSense-integrated layout.</p>
-                    <a href="https://github.com/Cavedragon13/cryptoflux-pro" class="project-link">View Project</a>
-                </div>
-            </div>
+        <div class="gallery-card">
+          <div class="thumb-wrap">
+            <img src="/galleries/workshop-wanderer/images/step_1_after.png"
+                 alt="Workshop Wanderer — creative session thumbnail"
+                 loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Workshop Wanderer</h3>
+            <p>A step-by-step AI art transformation session, before and after.</p>
+            <a class="view-link" href="/galleries/workshop-wanderer/">View Gallery →</a>
+          </div>
         </div>
+
+        <div class="gallery-card">
+          <div class="thumb-wrap">
+            <img src="/galleries/blank-canvas/images/blank_canvas_vision_1_after.png"
+                 alt="Blank Canvas Vision — colorization session thumbnail"
+                 loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Blank Canvas Vision</h3>
+            <p>Freestyle colorization session exploring bold visual interpretations of line art.</p>
+            <a class="view-link" href="/galleries/blank-canvas/">View Gallery →</a>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="thumb-wrap">
+            <img src="/galleries/chalkboard-pinup/images/chalkboard_pin_up_1_after.png"
+                 alt="Chalkboard Pin-Up — stylized pinup session thumbnail"
+                 loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Chalkboard Pin-Up</h3>
+            <p>Chalkboard-inspired line art meets vivid color in this stylized pin-up session.</p>
+            <a class="view-link" href="/galleries/chalkboard-pinup/">View Gallery →</a>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="thumb-wrap">
+            <img src="/galleries/cosmic-library-guardian/images/cosmic_library_guardian_1_after.png"
+                 alt="Cosmic Library Guardian — dwarf wizard thumbnail"
+                 loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Cosmic Library Guardian</h3>
+            <p>A dwarf wizard presides over an ancient magical library filled with floating orbs.</p>
+            <a class="view-link" href="/galleries/cosmic-library-guardian/">View Gallery →</a>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="thumb-wrap">
+            <img src="/galleries/twilight-clockwork-dragon/images/twilight_clockwork_dragon_1_after.png"
+                 alt="Twilight Clockwork Dragon — steampunk dragon thumbnail"
+                 loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Twilight Clockwork Dragon</h3>
+            <p>A steampunk mechanical dragon soars over an Art Deco cityscape at twilight.</p>
+            <a class="view-link" href="/galleries/twilight-clockwork-dragon/">View Gallery →</a>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="thumb-wrap">
+            <img src="/galleries/wild-west-huntress/images/wild_west_huntress_3_after.png"
+                 alt="Wild West Huntress — anime cowgirl thumbnail"
+                 loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3>Wild West Huntress</h3>
+            <p>An anime-style cowgirl gunslinger in a forest setting, reimagined through colorization.</p>
+            <a class="view-link" href="/galleries/wild-west-huntress/">View Gallery →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
-</section>
+  </section>
 
-<div class="forge-divider"></div>
-
-<!-- ─── ORDER ─── -->
-<section class="section" id="order">
+  <footer>
     <div class="container">
-        <div class="order-grid">
-            <div class="order-intro reveal">
-                <div class="section-eyebrow">Commissions</div>
-                <h2>Custom Order</h2>
-                <p>Commission original AI-generated artwork. Character portraits, fantasy scenes, before-and-after transformations.</p>
-                <p>Current turnaround: 1&#8211;3 days depending on complexity.</p>
-                <ul class="forge-list">
-                    <li>Character portraits &#8212; fantasy, sci-fi, historical</li>
-                    <li>Before / after transformation series</li>
-                    <li>Multi-image character studies</li>
-                    <li>Concept art and worldbuilding visuals</li>
-                    <li>Print-ready files included</li>
-                </ul>
-            </div>
-
-            <form class="reveal" action="submit-form.php" method="POST" enctype="multipart/form-data">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="style">Style</label>
-                    <select id="style" name="style">
-                        <option value="">Select a style...</option>
-                        <option value="fantasy">Fantasy / Medieval</option>
-                        <option value="scifi">Sci-Fi / Cyberpunk</option>
-                        <option value="steampunk">Steampunk</option>
-                        <option value="pinup">Vintage Pinup</option>
-                        <option value="portrait">Character Portrait</option>
-                        <option value="before-after">Before / After Transformation</option>
-                        <option value="other">Other (describe below)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description"
-                        placeholder="Describe the character, scene, mood, colors, or references..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="reference">Reference Image (optional)</label>
-                    <input type="file" id="reference" name="reference" accept="image/*">
-                </div>
-                <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Submit Order</button>
-            </form>
-        </div>
+      &copy; 2025 Seed 13 Productions &nbsp;&bull;&nbsp; #nokings
     </div>
-</section>
+  </footer>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-    <div class="container">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <a href="/" class="logo">Seed <span>13</span> Productions</a>
-                <p>AI artist and creative developer. Building strange, beautiful things at the intersection of technology and craft.</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>Galleries</h4>
-                    <ul>
-                        <li><a href="dwarves.html">Dwarves</a></li>
-                        <li><a href="urban-sage/urban-sage.html">Urban Sage</a></li>
-                        <li><a href="workshop-wanderer/workshop-wanderer.html">Workshop Wanderer</a></li>
-                        <li><a href="woodsey-gallery.html">Woodsey</a></li>
-                        <li><a href="sports-officials.html">Sports Officials</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Projects</h4>
-                    <ul>
-                        <li><a href="field-guide/">Field Guide</a></li>
-                        <li><a href="/games/survival/">Survival Games</a></li>
-                        <li><a href="https://github.com/Cavedragon13">GitHub</a></li>
-                        <li><a href="#order">Commission</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&#169; 2026 Seed 13 Productions. All rights reserved.</p>
-            <span class="nokings">#nokings</span>
-        </div>
-    </div>
-</footer>
-
-<script>
-    // Mobile nav
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-    // Scroll reveal
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
